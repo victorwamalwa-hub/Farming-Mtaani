@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farming Mtaani · Connecting Farmers & Consumers</title>
+    <link rel="stylesheet" href="STYLE.css" />
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <h1>🌿 Farming Mtaani</h1>
+        <p>Connecting Kenyan farmers &amp; consumers · Market prices, verified farms, eco-friendly guidance</p>
+    </header>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+            <li><a href="#prices" class="nav-link" data-page="prices">Market Prices</a></li>
+            <li><a href="#farms" class="nav-link" data-page="farms">Find a Farm</a></li>
+            <li><a href="#learn" class="nav-link" data-page="learn">Learn</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== HOME PAGE ========== -->
+    <section id="home" class="page-section active" aria-labelledby="home-heading">
+        <h2 id="home-heading">🌾 Welcome to Farming Mtaani</h2>
+
+        <div class="hero">
+            <div class="hero-text">
+                <p>
+                    Farming Mtaani bridges the gap between farmers and the market.
+                    Real-time prices, verified farms, and eco-friendly farming knowledge — all in one place.
+                </p>
+                <div class="form-actions">
+                    <button class="btn-primary" data-page="prices">View Market Prices</button>
+                    <button class="btn-secondary" data-page="farms">Find a Farm</button>
+                </div>
+            </div>
+            <img class="hero-img" src="images/hero-kenyan-farmer.jpg"
+                 alt="Kenyan farmer in a green field"
+                 onerror="this.style.display='none'" />
+        </div>
+
+        <h3>Explore the Platform</h3>
+        <div class="grid">
+            <div class="grid-item feature-card" data-page="prices">
+                <img src="images/feature-prices.jpg" alt="Kenyan market produce" onerror="this.style.display='none'" />
+                <h3>Market Prices</h3>
+                <p>Know what your produce is worth today in Nairobi, Nakuru, Kisumu, and beyond.</p>
+                <span class="link">Explore →</span>
+            </div>
+            <div class="grid-item feature-card" data-page="farms">
+                <img src="images/feature-farms.jpg" alt="Kenyan farmer" onerror="this.style.display='none'" />
+                <h3>Find Farmers</h3>
+                <p>Connect directly with farmers growing what you need, county by county.</p>
+                <span class="link">Explore →</span>
+            </div>
+            <div class="grid-item feature-card" data-page="learn">
+                <img src="images/feature-learn.jpg" alt="Kenyan crop inspection" onerror="this.style.display='none'" />
+                <h3>Learn Safely</h3>
+                <p>Eco-friendly guidance on diseases affecting your crops and livestock.</p>
+                <span class="link">Explore →</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICES PAGE ========== -->
+    <section id="prices" class="page-section" aria-labelledby="prices-heading">
+        <h2 id="prices-heading">📊 Market Prices Today</h2>
+        <p><em>Data shown is cached sample data from Kenyan markets.</em></p>
+
+        <div class="form-group">
+            <label for="price-search">Search crop:</label>
+            <input type="text" id="price-search" placeholder="e.g. Maize" />
+        </div>
+
+        <div class="form-group">
+            <label for="price-county">Filter by county:</label>
+            <select id="price-county">
+                <option value="">All Counties</option>
+            </select>
+        </div>
+
+        <div id="price-grid" class="grid"></div>
+    </section>
+
+    <!-- ========== FARMS PAGE ========== -->
+    <section id="farms" class="page-section" aria-labelledby="farms-heading">
+        <h2 id="farms-heading">🚜 Find a Farm</h2>
+
+        <div class="form-actions">
+            <button class="btn-primary" id="toggle-form-btn">+ Register Farm</button>
+        </div>
+
+        <form id="farm-form" style="display: none;" aria-label="Register a farm">
+            <div class="form-group">
+                <label for="farm-name">Farm Name: <span aria-hidden="true">*</span></label>
+                <input type="text" id="farm-name" required placeholder="e.g. Green Valley Farm" />
+            </div>
+            <div class="form-group">
+                <label for="farm-county">County: <span aria-hidden="true">*</span></label>
+                <input type="text" id="farm-county" required placeholder="e.g. Kiambu" />
+            </div>
+            <div class="form-group">
+                <label for="farm-produce">What do you produce? <span aria-hidden="true">*</span></label>
+                <input type="text" id="farm-produce" required placeholder="e.g. Maize &amp; Beans" />
+            </div>
+            <div class="form-group">
+                <label for="farm-contact">Phone number:</label>
+                <input type="tel" id="farm-contact" placeholder="e.g. 0712 345 678" />
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">💾 Save Farm</button>
+            </div>
+        </form>
+
+        <div class="form-group">
+            <label for="farm-search">Filter by county or produce:</label>
+            <input type="text" id="farm-search" placeholder="e.g. Nakuru or Maize" />
+        </div>
+
+        <div id="farm-grid" class="grid"></div>
+    </section>
+
+    <!-- ========== LEARN PAGE ========== -->
+    <section id="learn" class="page-section" aria-labelledby="learn-heading">
+        <h2 id="learn-heading">📚 Farm Education</h2>
+        <p>Practical, environmentally-friendly guidance for common Kenyan farm challenges.</p>
+
+        <div class="lesson-list">
+
+            <article class="lesson">
+                <img src="images/lesson-armyworm.jpg" alt="Kenyan maize farm" onerror="this.style.display='none'" />
+                <div class="lesson-body">
+                    <h3 class="lesson-toggle">Fall Armyworm (Maize) <span>+</span></h3>
+                    <div class="lesson-content">
+                        <p><strong>Symptoms:</strong> Ragged holes on leaves, sawdust-like frass in the funnel, yellowing plants.</p>
+                        <p><strong>Eco-friendly control:</strong> Hand-pick larvae early. Apply neem-based spray. Encourage natural predators like earwigs and birds. Avoid broad-spectrum pesticides.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lesson">
+                <img src="images/lesson-blight.jpg" alt="Kenyan tomato plant" onerror="this.style.display='none'" />
+                <div class="lesson-body">
+                    <h3 class="lesson-toggle">Tomato Blight <span>+</span></h3>
+                    <div class="lesson-content">
+                        <p><strong>Symptoms:</strong> Brown spots on leaves, white mould under leaves, rotting fruit.</p>
+                        <p><strong>Eco-friendly control:</strong> Remove affected leaves. Improve airflow by spacing plants. Use copper-based organic spray. Rotate crops.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="lesson">
+                <img src="images/lesson-cattle.jpg" alt="Kenyan cattle" onerror="this.style.display='none'" />
+                <div class="lesson-body">
+                    <h3 class="lesson-toggle">East Coast Fever (Cattle) <span>+</span></h3>
+                    <div class="lesson-content">
+                        <p><strong>Symptoms:</strong> High fever, swollen lymph nodes, loss of appetite, difficulty breathing.</p>
+                        <p><strong>Eco-friendly control:</strong> Use tick-resistant breeds. Regular acaricide dipping. Pasture rotation. Consult a local vet.</p>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <p>🌿 Farming Mtaani · © 2026 · Empowering Kenyan Farmers</p>
+    </footer>
+
+    <!-- Scripts loaded in dependency order -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/tests.js"></script>
+</body>
+</html>

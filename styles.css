@@ -1,0 +1,425 @@
+/* === EXTERNAL STYLESHEET: STYLE.css === */
+/* Styles for the Farming Mtaani MVP site */
+/* Theme: Agriculture Green & White | 0.5s transitions */
+
+/* ---------- GLOBAL RESET & BODY ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f2933;
+    padding: 20px;
+    line-height: 1.6;
+
+    /* Kenyan farmland background with green overlay */
+    background-color: #e8f5e9;
+    background-image:
+        linear-gradient(rgba(232, 245, 233, 0.82), rgba(232, 245, 233, 0.92)),
+        url("images/bg-kenya-farmland.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* ---------- HEADINGS ---------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', serif;
+    color: #1b5e20;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #c8e6c9;
+    padding-bottom: 8px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #1b5e20;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #2e7d32;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #2e7d32;
+}
+
+/* ---------- PARAGRAPHS & LINKS ---------- */
+p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+a {
+    color: #2e7d32;
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+a:hover {
+    color: #1b5e20;
+    text-decoration: underline;
+}
+
+/* ---------- HEADER ---------- */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ---------- NAVIGATION ---------- */
+nav {
+    background-color: #2e7d32;
+    padding: 12px 20px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(27, 94, 32, 0.12);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.5s ease, color 0.5s ease;
+    cursor: pointer;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #66bb6a;
+    color: #1b5e20;
+    text-decoration: none;
+}
+
+/* ---------- PAGE SECTIONS (tab switching) ---------- */
+.page-section { display: none; }
+.page-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- HERO ---------- */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12);
+    margin-bottom: 25px;
+}
+
+.hero-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.5s ease;
+}
+
+.hero-img:hover { transform: scale(1.02); }
+
+/* ---------- IMAGES ---------- */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(27, 94, 32, 0.08);
+    margin: 10px 0;
+    background: #e8f5e9;
+}
+
+/* ---------- BUTTONS ---------- */
+button, input[type="submit"], input[type="reset"] {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    margin: 5px 5px 5px 0;
+    box-shadow: 0 2px 4px rgba(27, 94, 32, 0.15);
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #1b5e20;
+    transform: scale(1.02);
+}
+
+.btn-primary { background-color: #2e7d32; color: white; }
+
+.btn-secondary {
+    background-color: white;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+}
+
+.btn-secondary:hover {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+}
+
+/* ---------- FORMS ---------- */
+form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.08);
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #1b5e20;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #c8e6c9;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border 0.5s ease, box-shadow 0.5s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #2e7d32;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.18);
+}
+
+fieldset {
+    border: 1.5px solid #c8e6c9;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 18px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 8px;
+    color: #1b5e20;
+}
+
+.form-actions {
+    margin-top: 15px;
+}
+
+/* ---------- GRID (card layout) ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.grid-item {
+    background: white;
+    padding: 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(27, 94, 32, 0.06);
+    border: 1px solid #c8e6c9;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18);
+}
+
+.grid-item h3 {
+    color: #1b5e20;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: 10px;
+}
+
+/* ---------- FEATURE CARDS ---------- */
+.feature-card { cursor: pointer; }
+.feature-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.feature-card:hover img { transform: scale(1.05); }
+.feature-card .link {
+    display: inline-block;
+    color: #2e7d32;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* ---------- PRICE CARDS ---------- */
+.price-card {
+    border-left: 6px solid #2e7d32;
+    transition: border-color 0.5s ease;
+}
+.price-card:hover { border-left-color: #66bb6a; }
+.price-card h3 { color: #1b5e20; margin-top: 0; }
+.price-card .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 2px;
+}
+.price-card .unit { color: #718096; font-size: 0.9rem; }
+.price-card .meta { color: #4a5568; font-size: 0.9rem; margin-top: 8px; }
+
+/* ---------- FARM CARDS ---------- */
+.farm-card img { width: 100%; height: 150px; object-fit: cover; }
+.farm-card h3 { color: #1b5e20; margin-top: 10px; }
+.farm-card .contact {
+    font-weight: 600;
+    color: #2e7d32;
+    margin-top: 8px;
+}
+
+/* ---------- LESSONS (accordion) ---------- */
+.lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.lesson {
+    display: flex;
+    gap: 16px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(27, 94, 32, 0.10);
+    transition: box-shadow 0.5s ease;
+}
+
+.lesson:hover { box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18); }
+
+.lesson img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    transition: transform 0.5s ease;
+}
+
+.lesson:hover img { transform: scale(1.05); }
+
+.lesson-body { padding: 16px 16px 16px 0; flex: 1; }
+.lesson-toggle {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1b5e20;
+    border-bottom: none;
+    padding: 4px 0;
+    margin: 0;
+    transition: color 0.5s ease;
+}
+.lesson-toggle:hover { color: #2e7d32; }
+.lesson-toggle span { font-size: 1.4rem; color: #2e7d32; }
+
+.lesson-content {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #c8e6c9;
+}
+.lesson.open .lesson-content {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+.lesson-content p { margin-bottom: 8px; color: #4a5568; }
+
+/* ---------- HR & FOOTER ---------- */
+hr {
+    border: none;
+    border-top: 2px dashed #c8e6c9;
+    margin: 30px 0;
+}
+
+footer {
+    background-color: #1b5e20;
+    color: white;
+    text-align: center;
+    padding: 18px 10px;
+    border-radius: 30px;
+    margin-top: 40px;
+    font-size: 0.95rem;
+}
+
+footer p { margin: 0; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-img { height: 220px; }
+    .lesson { flex-direction: column; }
+    .lesson img { width: 100%; height: 180px; }
+    .lesson-body { padding: 16px; }
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    body { padding: 10px; }
+    h1 { font-size: 2rem; }
+}
+
+/* ---------- EXPLANATION FOR BEGINNERS ---------- */
+/*
+  1.  * selector resets margins/padding for consistency.
+  2.  body sets font, color, and the Kenyan farmland background
+      (with a green translucent overlay so text stays readable).
+  3.  Headings use Georgia serif and deep greens.
+  4.  nav uses flexbox for a horizontal menu that stacks on phones.
+  5.  .page-section hides inactive tabs; .active shows one at a time.
+  6.  .grid is a responsive card grid (auto-fit minmax) for prices,
+      farms, and feature cards.
+  7.  Form inputs use rounded borders + focus glow (0.5s transition).
+  8.  Buttons are pill-shaped green with hover lift.
+  9.  .lesson uses flex + toggle to build an accordion.
+  10. Media queries stack layouts on tablet and mobile.
+*/
