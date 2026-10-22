@@ -1,8 +1,5 @@
 /* ============================================================
-   FARMING MTAANI — SAMPLE DATA
-   This file holds the cached sample data used by the MVP.
-   In a production version, replace PRICES with a fetch() call
-   to KilimoSTAT or another agricultural API (see app.js).
+   FARMING MTAANI — CACHED SAMPLE DATA
    ============================================================ */
 
 const PRICES = [
@@ -22,10 +19,9 @@ const INITIAL_FARMS = [
     { id: 3, name: "Mavuno Youth Farm", county: "Machakos", produce: "Mangoes & Avocado", contact: "0734 567 890" }
 ];
 
-/* Decorative images reused across farm cards (cycLED by index) */
 const FARM_IMAGES = [
     "images/feature-farms.jpg",
-    "images/feature-prices.jpg",
     "images/hero-kenyan-farmer.jpg",
+    "images/feature-prices.jpg",
     "images/bg-kenya-farmland.jpg"
 ];
