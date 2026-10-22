@@ -8,13 +8,11 @@
 </head>
 <body>
 
-    <!-- ========== HEADER ========== -->
     <header>
         <h1>🌿 Farming Mtaani</h1>
         <p>Connecting Kenyan farmers &amp; consumers · Market prices, verified farms, eco-friendly guidance</p>
     </header>
 
-    <!-- ========== NAVIGATION ========== -->
     <nav aria-label="Main navigation">
         <ul>
             <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
@@ -24,7 +22,7 @@
         </ul>
     </nav>
 
-    <!-- ========== HOME PAGE ========== -->
+    <!-- HOME PAGE -->
     <section id="home" class="page-section active" aria-labelledby="home-heading">
         <h2 id="home-heading">🌾 Welcome to Farming Mtaani</h2>
 
@@ -40,26 +38,25 @@
                 </div>
             </div>
             <img class="hero-img" src="images/hero-kenyan-farmer.jpg"
-                 alt="Kenyan farmer in a green field"
-                 onerror="this.style.display='none'" />
+                 alt="Kenyan farmers digging" onerror="this.style.display='none'" />
         </div>
 
         <h3>Explore the Platform</h3>
         <div class="grid">
             <div class="grid-item feature-card" data-page="prices">
-                <img src="images/feature-prices.jpg" alt="Kenyan market produce" onerror="this.style.display='none'" />
+                <img src="images/feature-prices.jpg" alt="Crops" onerror="this.style.display='none'" />
                 <h3>Market Prices</h3>
                 <p>Know what your produce is worth today in Nairobi, Nakuru, Kisumu, and beyond.</p>
                 <span class="link">Explore →</span>
             </div>
             <div class="grid-item feature-card" data-page="farms">
-                <img src="images/feature-farms.jpg" alt="Kenyan farmer" onerror="this.style.display='none'" />
+                <img src="images/feature-farms.jpg" alt="Seedlings" onerror="this.style.display='none'" />
                 <h3>Find Farmers</h3>
                 <p>Connect directly with farmers growing what you need, county by county.</p>
                 <span class="link">Explore →</span>
             </div>
             <div class="grid-item feature-card" data-page="learn">
-                <img src="images/feature-learn.jpg" alt="Kenyan crop inspection" onerror="this.style.display='none'" />
+                <img src="images/lesson-cattle.jpg" alt="Cattle" onerror="this.style.display='none'" />
                 <h3>Learn Safely</h3>
                 <p>Eco-friendly guidance on diseases affecting your crops and livestock.</p>
                 <span class="link">Explore →</span>
@@ -67,10 +64,11 @@
         </div>
     </section>
 
-    <!-- ========== PRICES PAGE ========== -->
+    <!-- PRICES PAGE -->
     <section id="prices" class="page-section" aria-labelledby="prices-heading">
         <h2 id="prices-heading">📊 Market Prices Today</h2>
-        <p><em>Data shown is cached sample data from Kenyan markets.</em></p>
+        <p id="api-status" style="font-size:0.9rem; margin-bottom:12px; font-weight:bold;"></p>
+        <br />
 
         <div class="form-group">
             <label for="price-search">Search crop:</label>
@@ -87,7 +85,7 @@
         <div id="price-grid" class="grid"></div>
     </section>
 
-    <!-- ========== FARMS PAGE ========== -->
+    <!-- FARMS PAGE -->
     <section id="farms" class="page-section" aria-labelledby="farms-heading">
         <h2 id="farms-heading">🚜 Find a Farm</h2>
 
@@ -125,15 +123,14 @@
         <div id="farm-grid" class="grid"></div>
     </section>
 
-    <!-- ========== LEARN PAGE ========== -->
+    <!-- LEARN PAGE -->
     <section id="learn" class="page-section" aria-labelledby="learn-heading">
         <h2 id="learn-heading">📚 Farm Education</h2>
         <p>Practical, environmentally-friendly guidance for common Kenyan farm challenges.</p>
 
         <div class="lesson-list">
-
             <article class="lesson">
-                <img src="images/lesson-armyworm.jpg" alt="Kenyan maize farm" onerror="this.style.display='none'" />
+                <img src="images/lesson-armyworm.jpg" alt="Armyworm on maize" onerror="this.style.display='none'" />
                 <div class="lesson-body">
                     <h3 class="lesson-toggle">Fall Armyworm (Maize) <span>+</span></h3>
                     <div class="lesson-content">
@@ -144,7 +141,7 @@
             </article>
 
             <article class="lesson">
-                <img src="images/lesson-blight.jpg" alt="Kenyan tomato plant" onerror="this.style.display='none'" />
+                <img src="images/lesson-blight.jpg" alt="Tomato blight" onerror="this.style.display='none'" />
                 <div class="lesson-body">
                     <h3 class="lesson-toggle">Tomato Blight <span>+</span></h3>
                     <div class="lesson-content">
@@ -155,7 +152,7 @@
             </article>
 
             <article class="lesson">
-                <img src="images/lesson-cattle.jpg" alt="Kenyan cattle" onerror="this.style.display='none'" />
+                <img src="images/lesson-cattle.jpg" alt="Cattle shed" onerror="this.style.display='none'" />
                 <div class="lesson-body">
                     <h3 class="lesson-toggle">East Coast Fever (Cattle) <span>+</span></h3>
                     <div class="lesson-content">
@@ -164,20 +161,21 @@
                     </div>
                 </div>
             </article>
-
         </div>
     </section>
 
     <hr />
 
-    <!-- ========== FOOTER ========== -->
     <footer>
         <p>🌿 Farming Mtaani · © 2026 · Empowering Kenyan Farmers</p>
     </footer>
 
-    <!-- Scripts loaded in dependency order -->
+    <!-- Scripts -->
+    <script src="js/util.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/tests.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/test.utils.js"></script>
 </body>
 </html>
