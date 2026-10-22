@@ -223,11 +223,21 @@ function initApp() {
     setupFarmForm();
     setupLessons();
 
-    document.getElementById("price-search").addEventListener("input", renderPrices);
-    document.getElementById("price-county").addEventListener("change", renderPrices);
-    document.getElementById("price-category").addEventListener("change", renderPrices);
-    document.getElementById("price-range").addEventListener("change", renderPrices);
-    document.getElementById("farm-search").addEventListener("input", renderFarms);
+    // Safe listener binding — only attaches if the element exists
+    const priceSearch = document.getElementById("price-search");
+    if (priceSearch) priceSearch.addEventListener("input", renderPrices);
+
+    const priceCounty = document.getElementById("price-county");
+    if (priceCounty) priceCounty.addEventListener("change", renderPrices);
+
+    const priceCategory = document.getElementById("price-category");
+    if (priceCategory) priceCategory.addEventListener("change", renderPrices);
+
+    const priceRange = document.getElementById("price-range");
+    if (priceRange) priceRange.addEventListener("change", renderPrices);
+
+    const farmSearch = document.getElementById("farm-search");
+    if (farmSearch) farmSearch.addEventListener("input", renderFarms);
 }
 
 function updatePrices(prices) {
