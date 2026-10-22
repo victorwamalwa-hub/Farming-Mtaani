@@ -122,15 +122,33 @@
         <input type="text" id="price-search" placeholder="e.g. Maize" />
       </div>
 
-      <div class="form-group">
-        <label for="price-county">Filter by county:</label>
-        <select id="price-county">
-          <option value="">All Counties</option>
-        </select>
-      </div>
+              <div class="form-group">
+            <label for="price-search">Search crop:</label>
+            <input type="text" id="price-search" placeholder="e.g. Maize" />
+        </div>
 
-      <div id="price-grid" class="grid"></div>
-    </section>
+        <div class="form-group">
+            <label for="price-county">Filter by county:</label>
+            <select id="price-county">
+                <option value="">All Counties</option>
+            </select>
+        </div>
+
+        <!-- NEW: Crop Category Filter -->
+        <div class="form-group">
+            <label for="price-category">Filter by Crop Category:</label>
+            <select id="price-category">
+                <option value="All">All Categories</option>
+            </select>
+        </div>
+
+        <!-- NEW: Price Range Filter -->
+        <div class="form-group">
+            <label for="price-range">Filter by Price Range:</label>
+            <select id="price-range">
+                <option value="All">All Prices</option>
+            </select>
+        </div>
 
     <!-- FARMS PAGE -->
     <section id="farms" class="page-section" aria-labelledby="farms-heading">
@@ -197,6 +215,26 @@
       <div id="farm-grid" class="grid"></div>
     </section>
 
+    <!-- NEW: Statistics Dashboard -->
+    <div class="grid stats-grid">
+      <div class="grid-item stat-card">
+        <h3 class="stat-number" id="stat-counties">0</h3>
+        <p>Counties Covered</p>
+      </div>
+      <div class="grid-item stat-card">
+        <h3 class="stat-number" id="stat-crops">0</h3>
+        <p>Crop Categories</p>
+      </div>
+      <div class="grid-item stat-card">
+        <h3 class="stat-number" id="stat-prices">0</h3>
+        <p>Live Market Prices</p>
+      </div>
+      <div class="grid-item stat-card">
+        <h3 class="stat-number" id="stat-diseases">0</h3>
+        <p>Diseases Tracked</p>
+      </div>
+    </div>
+
     <!-- LEARN PAGE -->
     <section id="learn" class="page-section" aria-labelledby="learn-heading">
       <h2 id="learn-heading">Farm Education</h2>
@@ -204,6 +242,16 @@
         Practical, environmentally-friendly guidance for common Kenyan farm
         challenges.
       </p>
+
+              <div class="form-group">
+            <label for="disease-filter">Filter diseases by crop:</label>
+            <select id="disease-filter">
+                <option value="All">All Crops</option>
+                <option value="Maize">Maize</option>
+                <option value="Tomatoes">Tomatoes</option>
+                <option value="Cattle">Cattle</option>
+            </select>
+        </div>
 
       <div class="lesson-list">
         <article class="lesson">
