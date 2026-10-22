@@ -49,9 +49,18 @@ const PRICES = [
 ];
 
 const INITIAL_FARMS = [
-    { id: 1, name: "Green Valley Farm", county: "Kiambu",   produce: "Vegetables & Kale", contact: "0712 345 678" },
-    { id: 2, name: "Rift Agro Hub",     county: "Nakuru",   produce: "Maize & Beans",     contact: "0723 456 789" },
-    { id: 3, name: "Mavuno Youth Farm", county: "Machakos", produce: "Mangoes & Avocado", contact: "0734 567 890" }
+    { id: 1,  name: "Green Valley Farm",      county: "Kiambu",      produce: "Vegetables & Kale",      contact: "0712 345 678" },
+    { id: 2,  name: "Rift Agro Hub",          county: "Nakuru",      produce: "Maize & Beans",          contact: "0723 456 789" },
+    { id: 3,  name: "Mavuno Youth Farm",      county: "Machakos",    produce: "Mangoes & Avocado",      contact: "0734 567 890" },
+    { id: 4,  name: "Kisumu Fresh Produce",   county: "Kisumu",      produce: "Rice & Fish Farming",    contact: "0745 678 901" },
+    { id: 5,  name: "Meru Highlands",         county: "Meru",        produce: "Avocado & Coffee",       contact: "0756 789 012" },
+    { id: 6,  name: "Nyeri Dairy & Crops",    county: "Nyeri",       produce: "Potatoes & Dairy",       contact: "0767 890 123" },
+    { id: 7,  name: "Kericho Green Gold",     county: "Kericho",     produce: "Tea Leaves & Maize",     contact: "0778 901 234" },
+    { id: 8,  name: "Kakamega Sugar Belt",    county: "Kakamega",    produce: "Sugarcane & Bananas",    contact: "0789 012 345" },
+    { id: 9,  name: "Trans Nzoia Grain Hub",  county: "Trans Nzoia", produce: "Wheat & Maize",          contact: "0790 123 456" },
+    { id: 10, name: "Kajiado Livestock",      county: "Kajiado",     produce: "Cattle & Goats",         contact: "0701 234 567" },
+    { id: 11, name: "Kilifi Coastal Farms",   county: "Kilifi",      produce: "Coconuts & Cashews",     contact: "0712 345 678" },
+    { id: 12, name: "Embu Horticulture",      county: "Embu",        produce: "Tomatoes & French Beans",contact: "0723 456 789" }
 ];
 
 const FARM_IMAGES = [
