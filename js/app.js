@@ -240,3 +240,6 @@ function updatePrices(prices) {
         }
     }
 }
+
+document.getElementById("price-category").addEventListener("change", renderPrices);
+document.getElementById("price-range").addEventListener("change", renderPrices);

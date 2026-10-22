@@ -2,7 +2,7 @@
    TESTS
    ============================================================ */
 
-(() => {
+window.addEventListener("load", () => { 
   let passed = 0;
   let failed = 0;
 
@@ -91,4 +91,4 @@
   } else {
     console.warn("⚠️ Some tests failed.");
   }
-})();
+});
