@@ -229,3 +229,14 @@ function initApp() {
     document.getElementById("price-range").addEventListener("change", renderPrices);
     document.getElementById("farm-search").addEventListener("input", renderFarms);
 }
+
+function updatePrices(prices) {
+    if (Array.isArray(prices) && prices.length > 0) {
+        currentPrices = prices;
+        populatePriceFilters();
+        renderPrices();
+        if (document.getElementById("stat-prices")) {
+            animateValue("stat-prices", 0, currentPrices.length, 1500);
+        }
+    }
+}
