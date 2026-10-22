@@ -6,16 +6,18 @@ body {
     color: #1f2933;
     padding: 20px;
     line-height: 1.6;
-    /* Background image with high transparency overlay */
-    background-color: #e8f5e9;
-    background-image: linear-gradient(rgba(232, 245, 233, 0.90), rgba(232, 245, 233, 0.95)), url("images/bg-kenya-farmland.jpg");
+    
+    background-color: #e8f5e9; 
+    
+    /* Using the Google image you provided for the background */
+    background-image: linear-gradient(rgba(232, 245, 233, 0.92), rgba(232, 245, 233, 0.95)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUjl5FFjqJ67tPQkZenW9PST8sF-ldAuieWwlZFp0lEQ&s=10');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
 }
 
 h1, h2, h3 { font-family: 'Georgia', serif; color: #1b5e20; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #c8e6c9; padding-bottom: 8px; }
-h1 { font-size: 2.5rem; text-align: center; color: #1b5e20; }
+h1 { font-size: 2.5rem; text-align: center; color: #1b5e20; letter-spacing: 1px; }
 h2 { font-size: 2rem; color: #2e7d32; }
 h3 { font-size: 1.5rem; color: #2e7d32; }
 p { margin-bottom: 15px; font-size: 1rem; }
@@ -28,10 +30,27 @@ nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wr
 nav ul li a { color: white; font-weight: bold; padding: 8px 16px; border-radius: 20px; transition: background 0.5s ease, color 0.5s ease; cursor: pointer; }
 nav ul li a:hover, nav ul li a.active { background-color: #66bb6a; color: #1b5e20; text-decoration: none; }
 
-/* Page Transitions */
-.page-section { display: none; }
-.page-section.active { display: block; animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+/* --- AESTHETIC PAGE TRANSITIONS --- */
+.page-section { 
+    display: none; 
+    opacity: 0;
+}
+
+.page-section.active { 
+    display: block; 
+    animation: slideUpFade 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; background: white; border-radius: 20px; padding: 25px; box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12); margin-bottom: 25px; }
 .hero-img { width: 100%; height: 300px; object-fit: cover; border-radius: 16px; transition: transform 0.5s ease; }
@@ -83,7 +102,7 @@ input:focus, select:focus, textarea:focus { border-color: #2e7d32; outline: none
 .lesson-toggle:hover { color: #2e7d32; }
 .lesson-toggle span { font-size: 1.4rem; color: #2e7d32; }
 .lesson-content { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed #c8e6c9; }
-.lesson.open .lesson-content { display: block; animation: fadeIn 0.5s ease; }
+.lesson.open .lesson-content { display: block; animation: slideUpFade 0.5s ease; }
 .lesson-content p { margin-bottom: 8px; color: #4a5568; }
 
 hr { border: none; border-top: 2px dashed #c8e6c9; margin: 30px 0; }
