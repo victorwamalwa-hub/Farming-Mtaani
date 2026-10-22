@@ -12,16 +12,18 @@ body {
   line-height: 1.6;
   background-color: #e8f5e9;
 
-  /* FIXED: Using your local Kenyan background image instead of the temporary Google link */
+  /* Using the local image. Make sure it is named exactly 'bg-kenya-farmland.jpg' in your images folder, or update this line */
   background-image:
-    linear-gradient(rgba(232, 245, 233, 0.92), rgba(232, 245, 233, 0.95)),
+    linear-gradient(rgba(232, 245, 233, 0.9), rgba(232, 245, 233, 0.95)),
     url("images/bg-kenya-farmland.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Georgia", serif;
   color: #1b5e20;
   margin-top: 20px;
@@ -35,12 +37,31 @@ h1 {
   color: #1b5e20;
   letter-spacing: 1px;
 }
-h2 { font-size: 2rem; color: #2e7d32; }
-h3 { font-size: 1.5rem; color: #2e7d32; }
-p { margin-bottom: 15px; font-size: 1rem; }
-a { color: #2e7d32; text-decoration: none; transition: color 0.5s ease; }
-a:hover { color: #1b5e20; text-decoration: underline; }
-header { text-align: center; margin-bottom: 20px; }
+h2 {
+  font-size: 2rem;
+  color: #2e7d32;
+}
+h3 {
+  font-size: 1.5rem;
+  color: #2e7d32;
+}
+p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+a {
+  color: #2e7d32;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+a:hover {
+  color: #1b5e20;
+  text-decoration: underline;
+}
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 /* NAVIGATION */
 nav {
@@ -62,7 +83,9 @@ nav ul li a {
   font-weight: bold;
   padding: 8px 16px;
   border-radius: 20px;
-  transition: background 0.5s ease, color 0.5s ease;
+  transition:
+    background 0.5s ease,
+    color 0.5s ease;
   cursor: pointer;
 }
 nav ul li a:hover,
@@ -73,14 +96,23 @@ nav ul li a.active {
 }
 
 /* PAGE TRANSITIONS */
-.page-section { display: none; opacity: 0; }
+.page-section {
+  display: none;
+  opacity: 0;
+}
 .page-section.active {
   display: block;
   animation: slideUpFade 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 @keyframes slideUpFade {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* HERO SECTION */
@@ -95,7 +127,9 @@ nav ul li a.active {
   box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12);
   margin-bottom: 25px;
 }
-.hero-text { flex: 1; }
+.hero-text {
+  flex: 1;
+}
 .hero-img {
   width: 100%;
   height: 300px;
@@ -103,7 +137,9 @@ nav ul li a.active {
   border-radius: 16px;
   transition: transform 0.5s ease;
 }
-.hero-img:hover { transform: scale(1.02); }
+.hero-img:hover {
+  transform: scale(1.02);
+}
 
 img {
   max-width: 100%;
@@ -116,7 +152,9 @@ img {
 }
 
 /* BUTTONS */
-button, input[type="submit"], input[type="reset"] {
+button,
+input[type="submit"],
+input[type="reset"] {
   background-color: #2e7d32;
   color: white;
   border: none;
@@ -129,13 +167,24 @@ button, input[type="submit"], input[type="reset"] {
   margin: 5px 5px 5px 0;
   box-shadow: 0 2px 4px rgba(27, 94, 32, 0.15);
 }
-button:hover, input[type="submit"]:hover {
+button:hover,
+input[type="submit"]:hover {
   background-color: #1b5e20;
   transform: scale(1.02);
 }
-.btn-primary { background-color: #2e7d32; color: white; }
-.btn-secondary { background-color: white; color: #2e7d32; border: 2px solid #2e7d32; }
-.btn-secondary:hover { background-color: #e8f5e9; color: #1b5e20; }
+.btn-primary {
+  background-color: #2e7d32;
+  color: white;
+}
+.btn-secondary {
+  background-color: white;
+  color: #2e7d32;
+  border: 2px solid #2e7d32;
+}
+.btn-secondary:hover {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
 
 /* FORMS */
 form {
@@ -146,23 +195,38 @@ form {
   max-width: 700px;
   margin: 20px auto;
 }
-.form-group { margin-bottom: 18px; }
-label { display: block; font-weight: 600; margin-bottom: 4px; color: #1b5e20; }
-input, select, textarea {
+.form-group {
+  margin-bottom: 18px;
+}
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #1b5e20;
+}
+input,
+select,
+textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1.5px solid #c8e6c9;
   border-radius: 10px;
   font-size: 1rem;
   font-family: inherit;
-  transition: border 0.5s ease, box-shadow 0.5s ease;
+  transition:
+    border 0.5s ease,
+    box-shadow 0.5s ease;
 }
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #2e7d32;
   outline: none;
   box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.18);
 }
-.form-actions { margin-top: 15px; }
+.form-actions {
+  margin-top: 15px;
+}
 
 /* GRID & CARDS */
 .grid {
@@ -177,32 +241,89 @@ input:focus, select:focus, textarea:focus {
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(27, 94, 32, 0.06);
   border: 1px solid #c8e6c9;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
 }
 .grid-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18);
 }
-.grid-item h3 { color: #1b5e20; border-bottom: none; padding-bottom: 0; margin-top: 10px; }
+.grid-item h3 {
+  color: #1b5e20;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 10px;
+}
 
-.feature-card { cursor: pointer; }
-.feature-card img { width: 100%; height: 160px; object-fit: cover; transition: transform 0.5s ease; }
-.feature-card:hover img { transform: scale(1.05); }
-.feature-card .link { display: inline-block; color: #2e7d32; font-weight: 600; margin-top: 8px; }
+.feature-card {
+  cursor: pointer;
+}
+.feature-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.feature-card:hover img {
+  transform: scale(1.05);
+}
+.feature-card .link {
+  display: inline-block;
+  color: #2e7d32;
+  font-weight: 600;
+  margin-top: 8px;
+}
 
-.price-card { border-left: 6px solid #2e7d32; transition: border-color 0.5s ease; }
-.price-card:hover { border-left-color: #66bb6a; }
-.price-card h3 { color: #1b5e20; margin-top: 0; }
-.price-card .price { font-size: 1.5rem; font-weight: 700; color: #2e7d32; margin-bottom: 2px; }
-.price-card .unit { color: #718096; font-size: 0.9rem; }
-.price-card .meta { color: #4a5568; font-size: 0.9rem; margin-top: 8px; }
+.price-card {
+  border-left: 6px solid #2e7d32;
+  transition: border-color 0.5s ease;
+}
+.price-card:hover {
+  border-left-color: #66bb6a;
+}
+.price-card h3 {
+  color: #1b5e20;
+  margin-top: 0;
+}
+.price-card .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 2px;
+}
+.price-card .unit {
+  color: #718096;
+  font-size: 0.9rem;
+}
+.price-card .meta {
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
 
-.farm-card img { width: 100%; height: 150px; object-fit: cover; }
-.farm-card h3 { color: #1b5e20; margin-top: 10px; }
-.farm-card .contact { font-weight: 600; color: #2e7d32; margin-top: 8px; }
+.farm-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.farm-card h3 {
+  color: #1b5e20;
+  margin-top: 10px;
+}
+.farm-card .contact {
+  font-weight: 600;
+  color: #2e7d32;
+  margin-top: 8px;
+}
 
 /* LESSONS (ACCORDION) */
-.lesson-list { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
 .lesson {
   display: flex;
   gap: 16px;
@@ -212,7 +333,9 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 4px 10px rgba(27, 94, 32, 0.1);
   transition: box-shadow 0.5s ease;
 }
-.lesson:hover { box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18); }
+.lesson:hover {
+  box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18);
+}
 .lesson img {
   width: 180px;
   height: 180px;
@@ -223,8 +346,13 @@ input:focus, select:focus, textarea:focus {
   margin: 0;
   transition: transform 0.5s ease;
 }
-.lesson:hover img { transform: scale(1.05); }
-.lesson-body { padding: 16px; flex: 1; }
+.lesson:hover img {
+  transform: scale(1.05);
+}
+.lesson-body {
+  padding: 16px;
+  flex: 1;
+}
 .lesson-toggle {
   cursor: pointer;
   display: flex;
@@ -236,19 +364,34 @@ input:focus, select:focus, textarea:focus {
   margin: 0;
   transition: color 0.5s ease;
 }
-.lesson-toggle:hover { color: #2e7d32; }
-.lesson-toggle span { font-size: 1.4rem; color: #2e7d32; }
+.lesson-toggle:hover {
+  color: #2e7d32;
+}
+.lesson-toggle span {
+  font-size: 1.4rem;
+  color: #2e7d32;
+}
 .lesson-content {
   display: none;
   margin-top: 12px;
   padding-top: 12px;
   border-top: 1px dashed #c8e6c9;
 }
-.lesson.open .lesson-content { display: block; animation: slideUpFade 0.5s ease; }
-.lesson-content p { margin-bottom: 8px; color: #4a5568; }
+.lesson.open .lesson-content {
+  display: block;
+  animation: slideUpFade 0.5s ease;
+}
+.lesson-content p {
+  margin-bottom: 8px;
+  color: #4a5568;
+}
 
 /* FOOTER */
-hr { border: none; border-top: 2px dashed #c8e6c9; margin: 30px 0; }
+hr {
+  border: none;
+  border-top: 2px dashed #c8e6c9;
+  margin: 30px 0;
+}
 footer {
   background-color: #1b5e20;
   color: white;
@@ -258,27 +401,25 @@ footer {
   margin-top: 40px;
   font-size: 0.95rem;
 }
-footer p { margin: 0; }
+footer p {
+  margin: 0;
+}
 
-/* ============================================================
-   RESPONSIVE DESIGN (Fixes the layout on tablets and phones)
-   ============================================================ */
-
-/* TABLETS (Between 601px and 900px) */
+/* RESPONSIVE DESIGN */
 @media (max-width: 900px) {
   .hero {
-    grid-template-columns: 1fr; /* Stacks text and image vertically */
+    grid-template-columns: 1fr;
     padding: 20px;
   }
   .hero-img {
     height: 250px;
   }
   .lesson {
-    flex-direction: column; /* Image on top, text below */
+    flex-direction: column;
   }
   .lesson img {
     width: 100%;
-    height: 220px; /* Fixed height so it doesn't get too tall */
+    height: 220px;
     object-fit: cover;
   }
   .lesson-body {
@@ -286,13 +427,12 @@ footer p { margin: 0; }
   }
 }
 
-/* PHONES (Below 600px) */
 @media (max-width: 600px) {
   body {
-    padding: 10px; /* Reduce side padding */
+    padding: 10px;
   }
   h1 {
-    font-size: 1.8rem; /* Smaller heading */
+    font-size: 1.8rem;
   }
   h2 {
     font-size: 1.5rem;
@@ -301,21 +441,21 @@ footer p { margin: 0; }
     font-size: 1.2rem;
   }
   nav ul {
-    flex-direction: column; /* Stack navigation links vertically */
+    flex-direction: column;
     align-items: center;
     gap: 8px;
   }
   .form-actions {
     display: flex;
-    flex-direction: column; /* Buttons stack on top of each other */
+    flex-direction: column;
     gap: 10px;
   }
   .form-actions button {
-    width: 100%; /* Full width buttons */
+    width: 100%;
     margin: 0;
   }
   .grid {
-    grid-template-columns: 1fr; /* Single column cards */
+    grid-template-columns: 1fr;
   }
   .lesson-toggle {
     font-size: 1.1rem;

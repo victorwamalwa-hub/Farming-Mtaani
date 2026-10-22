@@ -19,9 +19,10 @@ const INITIAL_FARMS = [
     { id: 3, name: "Mavuno Youth Farm", county: "Machakos", produce: "Mangoes & Avocado", contact: "0734 567 890" }
 ];
 
+/* Updated to use your exact saved files */
 const FARM_IMAGES = [
-    "images/feature-farms.jpg",
-    "images/hero-kenyan-farmer.jpg",
-    "images/feature-prices.jpg",
-    "images/bg-kenya-farmland.jpg"
+    "images/feature-farm.avif",
+    "images/hero-img.avif",
+    "images/feature-prices.jpeg",
+    "images/feature-learn.jpeg"
 ];
