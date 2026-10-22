@@ -4,15 +4,40 @@
 
 let farms = readStorage("fm_farms", INITIAL_FARMS);
 let currentPrices = PRICES;
+let activeDiseaseFilter = "All";
 
+/* ---------- DASHBOARD ANIMATION ---------- */
+function animateValue(id, start, end, duration) {
+    const obj = document.getElementById(id);
+    if (!obj) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+function loadDashboardStats() {
+    animateValue("stat-counties", 0, COUNTIES.length, 1500);
+    animateValue("stat-crops", 0, CROP_CATEGORIES.length - 1, 1500); // -1 to exclude "All"
+    animateValue("stat-prices", 0, currentPrices.length, 1500);
+    animateValue("stat-diseases", 0, DISEASES.length, 1500);
+}
+
+/* ---------- PAGE ROUTING ---------- */
 function showPage(pageId) {
     document.querySelectorAll(".page-section").forEach(section => section.classList.remove("active"));
     document.getElementById(pageId).classList.add("active");
-
+    
     document.querySelectorAll(".nav-link").forEach(link => {
         link.classList.toggle("active", link.dataset.page === pageId);
     });
-
+    
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -25,13 +50,31 @@ function bindPageNavigation() {
     });
 }
 
-function renderPriceCountyOptions(prices) {
-    const select = document.getElementById("price-county");
-    if (!select) return;
+/* ---------- PRICES FILTERS ---------- */
+function populatePriceFilters() {
+    // 1. Populate Counties
+    const countySelect = document.getElementById("price-county");
+    if (countySelect) {
+        const availableCounties = [...new Set(currentPrices.map(p => p.county))].sort();
+        countySelect.innerHTML = '<option value="">All Counties</option>' + 
+            availableCounties.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+    }
 
-    const counties = [...new Set(prices.map(p => p.county))].sort();
-    select.innerHTML = '<option value="">All Counties</option>' +
-        counties.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+    // 2. Populate Categories
+    const categorySelect = document.getElementById("price-category");
+    if (categorySelect) {
+        categorySelect.innerHTML = CROP_CATEGORIES.map(cat => 
+            `<option value="${cat}">${cat}</option>`
+        ).join("");
+    }
+
+    // 3. Populate Price Ranges
+    const rangeSelect = document.getElementById("price-range");
+    if (rangeSelect) {
+        rangeSelect.innerHTML = PRICE_RANGES.map((range, index) => 
+            `<option value="${index}">${range.label}</option>`
+        ).join("");
+    }
 }
 
 function renderPrices() {
@@ -40,10 +83,18 @@ function renderPrices() {
 
     const search = document.getElementById("price-search").value;
     const county = document.getElementById("price-county").value;
+    const category = document.getElementById("price-category").value;
+    const rangeIndex = document.getElementById("price-range").value;
+    const activeRange = PRICE_RANGES[rangeIndex];
 
-    const filtered = currentPrices.filter(p =>
-        matchesQuery(p.crop, search) && (county === "" || p.county === county)
-    );
+    const filtered = currentPrices.filter(p => {
+        const matchesSearch = matchesQuery(p.crop, search);
+        const matchesCounty = county === "" || p.county === county;
+        const matchesCategory = category === "All" || p.category === category;
+        const matchesPrice = p.price >= activeRange.min && p.price <= activeRange.max;
+
+        return matchesSearch && matchesCounty && matchesCategory && matchesPrice;
+    });
 
     if (filtered.length === 0) {
         grid.innerHTML = '<p>No prices match your search.</p>';
@@ -60,12 +111,13 @@ function renderPrices() {
     `).join("");
 }
 
+/* ---------- FARMS (No changes) ---------- */
 function renderFarms() {
     const grid = document.getElementById("farm-grid");
     if (!grid) return;
 
     const filter = document.getElementById("farm-search").value;
-    const filtered = farms.filter(f =>
+    const filtered = farms.filter(f => 
         matchesQuery(f.produce, filter) || matchesQuery(f.county, filter)
     );
 
@@ -101,7 +153,7 @@ function setupFarmForm() {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-
+        
         const newFarm = {
             id: Date.now(),
             name: document.getElementById("farm-name").value.trim(),
@@ -109,7 +161,7 @@ function setupFarmForm() {
             produce: document.getElementById("farm-produce").value.trim(),
             contact: document.getElementById("farm-contact").value.trim()
         };
-
+        
         if (!newFarm.name || !newFarm.county || !newFarm.produce) {
             alert("Please fill in all required fields.");
             return;
@@ -117,7 +169,7 @@ function setupFarmForm() {
 
         farms.push(newFarm);
         writeStorage("fm_farms", farms);
-
+        
         form.reset();
         form.style.display = "none";
         toggleBtn.textContent = "+ Register Farm";
@@ -125,7 +177,27 @@ function setupFarmForm() {
     });
 }
 
+/* ---------- LESSONS & DISEASE FILTER ---------- */
+function renderDiseaseLessons() {
+    const filter = document.getElementById("disease-filter")?.value || "All";
+    const lessons = document.querySelectorAll(".lesson");
+
+    lessons.forEach(lesson => {
+        // Get the title text from the h3 (e.g., "Fall Armyworm (Maize)")
+        const title = lesson.querySelector(".lesson-toggle").textContent.toLowerCase();
+        
+        if (filter === "All") {
+            lesson.style.display = "flex";
+        } else if (title.includes(filter.toLowerCase())) {
+            lesson.style.display = "flex";
+        } else {
+            lesson.style.display = "none";
+        }
+    });
+}
+
 function setupLessons() {
+    // 1. Setup Accordion
     document.querySelectorAll(".lesson-toggle").forEach(toggle => {
         toggle.addEventListener("click", () => {
             const lesson = toggle.closest(".lesson");
@@ -133,11 +205,19 @@ function setupLessons() {
             toggle.querySelector("span").textContent = isOpen ? "−" : "+";
         });
     });
+
+    // 2. Setup Filter Listener
+    const filterSelect = document.getElementById("disease-filter");
+    if (filterSelect) {
+        filterSelect.addEventListener("change", renderDiseaseLessons);
+    }
 }
 
+/* ---------- INIT ---------- */
 function initApp() {
     bindPageNavigation();
-    renderPriceCountyOptions(currentPrices);
+    loadDashboardStats();
+    populatePriceFilters();
     renderPrices();
     renderFarms();
     setupFarmForm();
@@ -145,13 +225,7 @@ function initApp() {
 
     document.getElementById("price-search").addEventListener("input", renderPrices);
     document.getElementById("price-county").addEventListener("change", renderPrices);
+    document.getElementById("price-category").addEventListener("change", renderPrices);
+    document.getElementById("price-range").addEventListener("change", renderPrices);
     document.getElementById("farm-search").addEventListener("input", renderFarms);
-}
-
-function updatePrices(prices) {
-    if (Array.isArray(prices) && prices.length > 0) {
-        currentPrices = prices;
-        renderPriceCountyOptions(currentPrices);
-        renderPrices();
-    }
 }
