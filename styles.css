@@ -31,33 +31,40 @@ h3 {
   border-bottom: 2px solid #c8e6c9;
   padding-bottom: 8px;
 }
+
 h1 {
   font-size: 2.5rem;
   text-align: center;
   color: #1b5e20;
   letter-spacing: 1px;
 }
+
 h2 {
   font-size: 2rem;
   color: #2e7d32;
 }
+
 h3 {
   font-size: 1.5rem;
   color: #2e7d32;
 }
+
 p {
   margin-bottom: 15px;
   font-size: 1rem;
 }
+
 a {
   color: #2e7d32;
   text-decoration: none;
   transition: color 0.5s ease;
 }
+
 a:hover {
   color: #1b5e20;
   text-decoration: underline;
 }
+
 header {
   text-align: center;
   margin-bottom: 20px;
@@ -71,6 +78,7 @@ nav {
   margin-bottom: 30px;
   box-shadow: 0 4px 8px rgba(27, 94, 32, 0.12);
 }
+
 nav ul {
   list-style: none;
   display: flex;
@@ -78,6 +86,7 @@ nav ul {
   flex-wrap: wrap;
   gap: 20px;
 }
+
 nav ul li a {
   color: white;
   font-weight: bold;
@@ -88,6 +97,7 @@ nav ul li a {
     color 0.5s ease;
   cursor: pointer;
 }
+
 nav ul li a:hover,
 nav ul li a.active {
   background-color: #66bb6a;
@@ -100,15 +110,18 @@ nav ul li a.active {
   display: none;
   opacity: 0;
 }
+
 .page-section.active {
   display: block;
   animation: slideUpFade 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
+
 @keyframes slideUpFade {
   0% {
     opacity: 0;
     transform: translateY(30px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -127,9 +140,11 @@ nav ul li a.active {
   box-shadow: 0 4px 12px rgba(27, 94, 32, 0.12);
   margin-bottom: 25px;
 }
+
 .hero-text {
   flex: 1;
 }
+
 .hero-img {
   width: 100%;
   height: 300px;
@@ -137,6 +152,7 @@ nav ul li a.active {
   border-radius: 16px;
   transition: transform 0.5s ease;
 }
+
 .hero-img:hover {
   transform: scale(1.02);
 }
@@ -167,20 +183,24 @@ input[type="reset"] {
   margin: 5px 5px 5px 0;
   box-shadow: 0 2px 4px rgba(27, 94, 32, 0.15);
 }
+
 button:hover,
 input[type="submit"]:hover {
   background-color: #1b5e20;
   transform: scale(1.02);
 }
+
 .btn-primary {
   background-color: #2e7d32;
   color: white;
 }
+
 .btn-secondary {
   background-color: white;
   color: #2e7d32;
   border: 2px solid #2e7d32;
 }
+
 .btn-secondary:hover {
   background-color: #e8f5e9;
   color: #1b5e20;
@@ -195,15 +215,18 @@ form {
   max-width: 700px;
   margin: 20px auto;
 }
+
 .form-group {
   margin-bottom: 18px;
 }
+
 label {
   display: block;
   font-weight: 600;
   margin-bottom: 4px;
   color: #1b5e20;
 }
+
 input,
 select,
 textarea {
@@ -217,6 +240,7 @@ textarea {
     border 0.5s ease,
     box-shadow 0.5s ease;
 }
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -224,6 +248,7 @@ textarea:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.18);
 }
+
 .form-actions {
   margin-top: 15px;
 }
@@ -235,6 +260,7 @@ textarea:focus {
   gap: 25px;
   margin: 25px 0;
 }
+
 .grid-item {
   background: white;
   padding: 18px;
@@ -245,10 +271,12 @@ textarea:focus {
     transform 0.5s ease,
     box-shadow 0.5s ease;
 }
+
 .grid-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18);
 }
+
 .grid-item h3 {
   color: #1b5e20;
   border-bottom: none;
@@ -259,15 +287,18 @@ textarea:focus {
 .feature-card {
   cursor: pointer;
 }
+
 .feature-card img {
   width: 100%;
   height: 160px;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
+
 .feature-card:hover img {
   transform: scale(1.05);
 }
+
 .feature-card .link {
   display: inline-block;
   color: #2e7d32;
@@ -279,23 +310,28 @@ textarea:focus {
   border-left: 6px solid #2e7d32;
   transition: border-color 0.5s ease;
 }
+
 .price-card:hover {
   border-left-color: #66bb6a;
 }
+
 .price-card h3 {
   color: #1b5e20;
   margin-top: 0;
 }
+
 .price-card .price {
   font-size: 1.5rem;
   font-weight: 700;
   color: #2e7d32;
   margin-bottom: 2px;
 }
+
 .price-card .unit {
   color: #718096;
   font-size: 0.9rem;
 }
+
 .price-card .meta {
   color: #4a5568;
   font-size: 0.9rem;
@@ -307,10 +343,12 @@ textarea:focus {
   height: 150px;
   object-fit: cover;
 }
+
 .farm-card h3 {
   color: #1b5e20;
   margin-top: 10px;
 }
+
 .farm-card .contact {
   font-weight: 600;
   color: #2e7d32;
@@ -324,6 +362,7 @@ textarea:focus {
   gap: 16px;
   margin-top: 20px;
 }
+
 .lesson {
   display: flex;
   gap: 16px;
@@ -333,9 +372,11 @@ textarea:focus {
   box-shadow: 0 4px 10px rgba(27, 94, 32, 0.1);
   transition: box-shadow 0.5s ease;
 }
+
 .lesson:hover {
   box-shadow: 0 8px 22px rgba(27, 94, 32, 0.18);
 }
+
 .lesson img {
   width: 180px;
   height: 180px;
@@ -346,13 +387,16 @@ textarea:focus {
   margin: 0;
   transition: transform 0.5s ease;
 }
+
 .lesson:hover img {
   transform: scale(1.05);
 }
+
 .lesson-body {
   padding: 16px;
   flex: 1;
 }
+
 .lesson-toggle {
   cursor: pointer;
   display: flex;
@@ -364,23 +408,28 @@ textarea:focus {
   margin: 0;
   transition: color 0.5s ease;
 }
+
 .lesson-toggle:hover {
   color: #2e7d32;
 }
+
 .lesson-toggle span {
   font-size: 1.4rem;
   color: #2e7d32;
 }
+
 .lesson-content {
   display: none;
   margin-top: 12px;
   padding-top: 12px;
   border-top: 1px dashed #c8e6c9;
 }
+
 .lesson.open .lesson-content {
   display: block;
   animation: slideUpFade 0.5s ease;
 }
+
 .lesson-content p {
   margin-bottom: 8px;
   color: #4a5568;
@@ -392,6 +441,7 @@ hr {
   border-top: 2px dashed #c8e6c9;
   margin: 30px 0;
 }
+
 footer {
   background-color: #1b5e20;
   color: white;
@@ -401,6 +451,7 @@ footer {
   margin-top: 40px;
   font-size: 0.95rem;
 }
+
 footer p {
   margin: 0;
 }
@@ -411,17 +462,21 @@ footer p {
     grid-template-columns: 1fr;
     padding: 20px;
   }
+
   .hero-img {
     height: 250px;
   }
+
   .lesson {
     flex-direction: column;
   }
+
   .lesson img {
     width: 100%;
     height: 220px;
     object-fit: cover;
   }
+
   .lesson-body {
     padding: 16px;
   }
@@ -431,32 +486,40 @@ footer p {
   body {
     padding: 10px;
   }
+
   h1 {
     font-size: 1.8rem;
   }
+
   h2 {
     font-size: 1.5rem;
   }
+
   h3 {
     font-size: 1.2rem;
   }
+
   nav ul {
     flex-direction: column;
     align-items: center;
     gap: 8px;
   }
+
   .form-actions {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
+
   .form-actions button {
     width: 100%;
     margin: 0;
   }
+
   .grid {
     grid-template-columns: 1fr;
   }
+
   .lesson-toggle {
     font-size: 1.1rem;
   }

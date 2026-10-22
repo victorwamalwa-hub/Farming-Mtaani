@@ -8,11 +8,11 @@ let currentPrices = PRICES;
 function showPage(pageId) {
     document.querySelectorAll(".page-section").forEach(section => section.classList.remove("active"));
     document.getElementById(pageId).classList.add("active");
-    
+
     document.querySelectorAll(".nav-link").forEach(link => {
         link.classList.toggle("active", link.dataset.page === pageId);
     });
-    
+
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -28,9 +28,9 @@ function bindPageNavigation() {
 function renderPriceCountyOptions(prices) {
     const select = document.getElementById("price-county");
     if (!select) return;
-    
+
     const counties = [...new Set(prices.map(p => p.county))].sort();
-    select.innerHTML = '<option value="">All Counties</option>' + 
+    select.innerHTML = '<option value="">All Counties</option>' +
         counties.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
 }
 
@@ -41,7 +41,7 @@ function renderPrices() {
     const search = document.getElementById("price-search").value;
     const county = document.getElementById("price-county").value;
 
-    const filtered = currentPrices.filter(p => 
+    const filtered = currentPrices.filter(p =>
         matchesQuery(p.crop, search) && (county === "" || p.county === county)
     );
 
@@ -65,7 +65,7 @@ function renderFarms() {
     if (!grid) return;
 
     const filter = document.getElementById("farm-search").value;
-    const filtered = farms.filter(f => 
+    const filtered = farms.filter(f =>
         matchesQuery(f.produce, filter) || matchesQuery(f.county, filter)
     );
 
@@ -101,7 +101,7 @@ function setupFarmForm() {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        
+
         const newFarm = {
             id: Date.now(),
             name: document.getElementById("farm-name").value.trim(),
@@ -109,7 +109,7 @@ function setupFarmForm() {
             produce: document.getElementById("farm-produce").value.trim(),
             contact: document.getElementById("farm-contact").value.trim()
         };
-        
+
         if (!newFarm.name || !newFarm.county || !newFarm.produce) {
             alert("Please fill in all required fields.");
             return;
@@ -117,7 +117,7 @@ function setupFarmForm() {
 
         farms.push(newFarm);
         writeStorage("fm_farms", farms);
-        
+
         form.reset();
         form.style.display = "none";
         toggleBtn.textContent = "+ Register Farm";
