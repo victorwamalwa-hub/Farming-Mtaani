@@ -61,7 +61,7 @@ function populatePriceFilters() {
     }
 
     // 2. Populate Categories
-    const categorySelect = document.getElementById("price-category");
+    const categorySelect = document.getElementById("price-category").innerHTML
     if (categorySelect) {
         categorySelect.innerHTML = CROP_CATEGORIES.map(cat => 
             `<option value="${cat}">${cat}</option>`
