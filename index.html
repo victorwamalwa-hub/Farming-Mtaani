@@ -1,344 +1,314 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Farming Mtaani · Connecting Farmers & Consumers</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
 
-  <body>
-    <header>
-      <h1>Farming Mtaani</h1>
-      <p>
-        Connecting Kenyan farmers &amp; consumers · Market prices, verified
-        farms, eco-friendly guidance
-      </p>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Farming Mtaani · Connecting Farmers & Consumers</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-    <nav aria-label="Main navigation">
-      <ul>
-        <li>
-          <a href="#home" class="nav-link active" data-page="home">Home</a>
-        </li>
-        <li>
-          <a href="#prices" class="nav-link" data-page="prices"
-            >Market Prices</a
-          >
-        </li>
-        <li>
-          <a href="#farms" class="nav-link" data-page="farms">Find a Farm</a>
-        </li>
-        <li><a href="#learn" class="nav-link" data-page="learn">Learn</a></li>
-      </ul>
-    </nav>
+<body>
+  <header>
+    <h1>Farming Mtaani</h1>
+    <p>
+      Connecting Kenyan farmers &amp; consumers · Market prices, verified
+      farms, eco-friendly guidance
+    </p>
+  </header>
 
-    <!-- HOME PAGE -->
-    <section
-      id="home"
-      class="page-section active"
-      aria-labelledby="home-heading"
-    >
-      <h2 id="home-heading">Welcome to Farming Mtaani</h2>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li>
+        <a href="#home" class="nav-link active" data-page="home">Home</a>
+      </li>
+      <li>
+        <a href="#prices" class="nav-link" data-page="prices">Market Prices</a>
+      </li>
+      <li>
+        <a href="#farms" class="nav-link" data-page="farms">Find a Farm</a>
+      </li>
+      <li><a href="#challenge" class="nav-link" data-page="challenge">Challenge</a></li>
+    </ul>
+  </nav>
 
-      <div class="hero">
-        <div class="hero-text">
-          <p>
-            Farming Mtaani bridges the gap between farmers and the market.
-            Real-time prices, verified farms, and eco-friendly farming
-            knowledge, all in one place.
-          </p>
-          <div class="form-actions">
-            <button class="btn-primary" data-page="prices">
-              View Market Prices
-            </button>
-            <button class="btn-secondary" data-page="farms">Find a Farm</button>
-          </div>
-        </div>
-        <!-- Updated to .avif as saved -->
-        <img
-          class="hero-img"
-          src="images/hero-img.avif"
-          alt="Kenyan farmers digging"
-          onerror="this.style.display = 'none'"
-        />
-      </div>
+  <!-- HOME PAGE -->
+  <section id="home" class="page-section active" aria-labelledby="home-heading">
+    <h2 id="home-heading">Welcome to Farming Mtaani</h2>
 
-      <h3>Explore the Platform</h3>
-      <div class="grid">
-        <div class="grid-item feature-card" data-page="prices">
-          <img
-            src="images/feature-prices.jpeg"
-            alt="Crops"
-            onerror="this.style.display = 'none'"
-          />
-          <h3>Market Prices</h3>
-          <p>
-            Know what your produce is worth today in Nairobi, Nakuru, Kisumu,
-            and beyond.
-          </p>
-          <span class="link">Explore &rarr;</span>
-        </div>
-        <div class="grid-item feature-card" data-page="farms">
-          <!-- Updated to .avif as saved -->
-          <img
-            src="images/feature-farm.avif"
-            alt="Seedlings"
-            onerror="this.style.display = 'none'"
-          />
-          <h3>Find Farmers</h3>
-          <p>
-            Connect directly with farmers growing what you need, county by
-            county.
-          </p>
-          <span class="link">Explore &rarr;</span>
-        </div>
-        <div class="grid-item feature-card" data-page="learn">
-          <img
-            src="images/feature-learn.jpeg"
-            alt="Cattle"
-            onerror="this.style.display = 'none'"
-          />
-          <h3>Learn Safely</h3>
-          <p>
-            Eco-friendly guidance on diseases affecting your crops and
-            livestock.
-          </p>
-          <span class="link">Explore &rarr;</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICES PAGE -->
-    <section id="prices" class="page-section" aria-labelledby="prices-heading">
-      <h2 id="prices-heading">Market Prices Today</h2>
-      <p
-        id="api-status"
-        style="font-size: 0.9rem; margin-bottom: 12px; font-weight: bold"
-      ></p>
-
-      <div class="form-group">
-        <label for="price-search">Search crop:</label>
-        <input type="text" id="price-search" placeholder="e.g. Maize" />
-      </div>
-
-              <div class="form-group">
-            <label for="price-search">Search crop:</label>
-            <input type="text" id="price-search" placeholder="e.g. Maize" />
-        </div>
-
-        <div class="form-group">
-            <label for="price-county">Filter by county:</label>
-            <select id="price-county">
-                <option value="">All Counties</option>
-            </select>
-        </div>
-
-        <!-- NEW: Crop Category Filter -->
-        <div class="form-group">
-            <label for="price-category">Filter by Crop Category:</label>
-            <select id="price-category">
-                <option value="All">All Categories</option>
-            </select>
-        </div>
-
-        <!-- NEW: Price Range Filter -->
-        <div class="form-group">
-            <label for="price-range">Filter by Price Range:</label>
-            <select id="price-range">
-                <option value="All">All Prices</option>
-            </select>
-        </div>
-        <!-- CRITICAL LINE-->
-      <div id="price-grid" class="grid"></div>
-    </section>
-
-    <!-- FARMS PAGE -->
-    <section id="farms" class="page-section" aria-labelledby="farms-heading">
-      <h2 id="farms-heading">Find a Farm</h2>
-
-      <div class="form-actions">
-        <button class="btn-primary" id="toggle-form-btn">
-          + Register Farm
-        </button>
-      </div>
-
-      <form id="farm-form" style="display: none" aria-label="Register a farm">
-        <div class="form-group">
-          <label for="farm-name"
-            >Farm Name: <span aria-hidden="true">*</span></label
-          >
-          <input
-            type="text"
-            id="farm-name"
-            required
-            placeholder="e.g. Green Valley Farm"
-          />
-        </div>
-        <div class="form-group">
-          <label for="farm-county"
-            >County: <span aria-hidden="true">*</span></label
-          >
-          <input
-            type="text"
-            id="farm-county"
-            required
-            placeholder="e.g. Kiambu"
-          />
-        </div>
-        <div class="form-group">
-          <label for="farm-produce"
-            >What do you produce? <span aria-hidden="true">*</span></label
-          >
-          <input
-            type="text"
-            id="farm-produce"
-            required
-            placeholder="e.g. Maize &amp; Beans"
-          />
-        </div>
-        <div class="form-group">
-          <label for="farm-contact">Phone number:</label>
-          <input type="tel" id="farm-contact" placeholder="e.g. 0712 345 678" />
-        </div>
+    <div class="hero">
+      <div class="hero-text">
+        <p>
+          Farming Mtaani bridges the gap between farmers and the market.
+          Real-time prices, verified farms, and eco-friendly farming
+          knowledge, all in one place.
+        </p>
         <div class="form-actions">
-          <button type="submit" class="btn-primary">Save Farm</button>
+          <button class="btn-primary" data-page="prices">
+            View Market Prices
+          </button>
+          <button class="btn-secondary" data-page="farms">Find a Farm</button>
         </div>
-      </form>
-
-      <div class="form-group">
-        <label for="farm-search">Filter by county or produce:</label>
-        <input
-          type="text"
-          id="farm-search"
-          placeholder="Seearch by county (e.g. Kiambu) or produce (e.g. Potatoes)" 
-        />
       </div>
-
-      <div id="farm-grid" class="grid"></div>
-    </section>
-
-    <!-- NEW: Statistics Dashboard -->
-    <div class="grid stats-grid">
-      <div class="grid-item stat-card">
-        <h3 class="stat-number" id="stat-counties">0</h3>
-        <p>Counties Covered</p>
-      </div>
-      <div class="grid-item stat-card">
-        <h3 class="stat-number" id="stat-crops">0</h3>
-        <p>Crop Categories</p>
-      </div>
-      <div class="grid-item stat-card">
-        <h3 class="stat-number" id="stat-prices">0</h3>
-        <p>Live Market Prices</p>
-      </div>
-      <div class="grid-item stat-card">
-        <h3 class="stat-number" id="stat-diseases">0</h3>
-        <p>Diseases Tracked</p>
-      </div>
+      <!-- Updated to .avif as saved -->
+      <img class="hero-img" src="images/hero-img.avif" alt="Kenyan farmers digging"
+        onerror="this.style.display = 'none'" />
     </div>
 
-    <!-- LEARN PAGE -->
-    <section id="learn" class="page-section" aria-labelledby="learn-heading">
-      <h2 id="learn-heading">Farm Education</h2>
-      <p>
-        Practical, environmentally-friendly guidance for common Kenyan farm
-        challenges.
-      </p>
-
-              <div class="form-group">
-            <label for="disease-filter">Filter diseases by crop:</label>
-            <select id="disease-filter">
-                <option value="All">All Crops</option>
-                <option value="Maize">Maize</option>
-                <option value="Tomatoes">Tomatoes</option>
-                <option value="Cattle">Cattle</option>
-            </select>
-        </div>
-
-      <div class="lesson-list">
-        <article class="lesson">
-          <img
-            src="images/lesson-armyworm.jpeg"
-            alt="Armyworm on maize"
-            onerror="this.style.display = 'none'"
-          />
-          <div class="lesson-body">
-            <h3 class="lesson-toggle">Fall Armyworm (Maize) <span>+</span></h3>
-            <div class="lesson-content">
-              <p>
-                <strong>Symptoms:</strong> Ragged holes on leaves, sawdust-like
-                frass in the funnel, yellowing plants.
-              </p>
-              <p>
-                <strong>Eco-friendly control:</strong> Hand-pick larvae early.
-                Apply neem-based spray. Encourage natural predators like earwigs
-                and birds. Avoid broad-spectrum pesticides.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="lesson">
-          <img
-            src="images/lesson-blight.jpeg"
-            alt="Tomato blight"
-            onerror="this.style.display = 'none'"
-          />
-          <div class="lesson-body">
-            <h3 class="lesson-toggle">Tomato Blight <span>+</span></h3>
-            <div class="lesson-content">
-              <p>
-                <strong>Symptoms:</strong> Brown spots on leaves, white mould
-                under leaves, rotting fruit.
-              </p>
-              <p>
-                <strong>Eco-friendly control:</strong> Remove affected leaves.
-                Improve airflow by spacing plants. Use copper-based organic
-                spray. Rotate crops.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article class="lesson">
-          <img
-            src="images/lesson-cattle.jpeg"
-            alt="Cattle shed"
-            onerror="this.style.display = 'none'"
-          />
-          <div class="lesson-body">
-            <h3 class="lesson-toggle">
-              East Coast Fever (Cattle) <span>+</span>
-            </h3>
-            <div class="lesson-content">
-              <p>
-                <strong>Symptoms:</strong> High fever, swollen lymph nodes, loss
-                of appetite, difficulty breathing.
-              </p>
-              <p>
-                <strong>Eco-friendly control:</strong> Use tick-resistant
-                breeds. Regular acaricide dipping. Pasture rotation. Consult a
-                local vet.
-              </p>
-            </div>
-          </div>
-        </article>
+    <h3>Explore the Platform</h3>
+    <div class="grid">
+      <div class="grid-item feature-card" data-page="prices">
+        <img src="images/feature-prices.jpeg" alt="Crops" onerror="this.style.display = 'none'" />
+        <h3>Market Prices</h3>
+        <p>
+          Know what your produce is worth today in Nairobi, Nakuru, Kisumu,
+          and beyond.
+        </p>
+        <span class="link">Explore &rarr;</span>
       </div>
-    </section>
+      <div class="grid-item feature-card" data-page="farms">
+        <!-- Updated to .avif as saved -->
+        <img src="images/feature-farm.avif" alt="Seedlings" onerror="this.style.display = 'none'" />
+        <h3>Find Farmers</h3>
+        <p>
+          Connect directly with farmers growing what you need, county by
+          county.
+        </p>
+        <span class="link">Explore &rarr;</span>
+      </div>
+      <div class="grid-item feature-card" data-page="learn">
+        <img src="images/feature-learn.jpeg" alt="Cattle" onerror="this.style.display = 'none'" />
+        <h3>Learn Safely</h3>
+        <p>
+          Eco-friendly guidance on diseases affecting your crops and
+          livestock.
+        </p>
+        <span class="link">Explore &rarr;</span>
+      </div>
+    </div>
+  </section>
 
-    <hr />
+  <!-- PRICES PAGE -->
+  <section id="prices" class="page-section" aria-labelledby="prices-heading">
+    <h2 id="prices-heading">Market Prices Today</h2>
+    <p id="api-status" style="font-size: 0.9rem; margin-bottom: 12px; font-weight: bold"></p>
 
-    <footer>
-      <p>Farming Mtaani &copy; 2026 &middot; Empowering Kenyan Farmers</p>
-    </footer>
+    <div class="form-group">
+    <label for="price-search">Search crop:</label>
+    <input type="text" id="price-search" placeholder="e.g. Maize" />
+</div>
 
-    <!-- Scripts -->
-    <script src="js/util.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/test.utils.js"></script>
-  </body>
+<div class="form-group">
+    <label for="price-county">Filter by county:</label>
+    <select id="price-county">
+        <option value="">All Counties</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="price-category">Filter by Crop Category:</label>
+    <select id="price-category">
+        <option value="All">All Categories</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="price-range">Filter by Price Range:</label>
+    <select id="price-range">
+        <option value="All">All Prices</option>
+    </select>
+</div>
+    <!-- CRITICAL LINE-->
+    <div id="price-grid" class="grid"></div>
+  </section>
+
+  <!-- FARMS PAGE -->
+  <section id="farms" class="page-section" aria-labelledby="farms-heading">
+    <h2 id="farms-heading">Find a Farm</h2>
+
+    <div class="form-actions">
+      <button class="btn-primary" id="toggle-form-btn">
+        + Register Farm
+      </button>
+    </div>
+
+    <form id="farm-form" style="display: none" aria-label="Register a farm">
+      <div class="form-group">
+        <label for="farm-name">Farm Name: <span aria-hidden="true">*</span></label>
+        <input type="text" id="farm-name" required placeholder="e.g. Green Valley Farm" />
+      </div>
+      <div class="form-group">
+        <label for="farm-county">County: <span aria-hidden="true">*</span></label>
+        <input type="text" id="farm-county" required placeholder="e.g. Kiambu" />
+      </div>
+      <div class="form-group">
+        <label for="farm-produce">What do you produce? <span aria-hidden="true">*</span></label>
+        <input type="text" id="farm-produce" required placeholder="e.g. Maize &amp; Beans" />
+      </div>
+      <div class="form-group">
+        <label for="farm-contact">Phone number:</label>
+        <input type="tel" id="farm-contact" placeholder="e.g. 0712 345 678" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Save Farm</button>
+      </div>
+    </form>
+
+    <div class="form-group">
+      <label for="farm-search">Filter by county or produce:</label>
+      <input type="text" id="farm-search" placeholder="Seearch by county (e.g. Kiambu) or produce (e.g. Potatoes)" />
+    </div>
+
+    <div id="farm-grid" class="grid"></div>
+  </section>
+
+  <!-- NEW: Statistics Dashboard -->
+  <div class="grid stats-grid">
+    <div class="grid-item stat-card">
+      <h3 class="stat-number" id="stat-counties">0</h3>
+      <p>Counties Covered</p>
+    </div>
+    <div class="grid-item stat-card">
+      <h3 class="stat-number" id="stat-crops">0</h3>
+      <p>Crop Categories</p>
+    </div>
+    <div class="grid-item stat-card">
+      <h3 class="stat-number" id="stat-prices">0</h3>
+      <p>Live Market Prices</p>
+    </div>
+    <div class="grid-item stat-card">
+      <h3 class="stat-number" id="stat-diseases">0</h3>
+      <p>Diseases Tracked</p>
+    </div>
+  </div>
+
+  <!-- LEARN PAGE -->
+  <section id="learn" class="page-section" aria-labelledby="learn-heading">
+    <h2 id="learn-heading">Farm Education</h2>
+    <p>
+      Practical, environmentally-friendly guidance for common Kenyan farm
+      challenges.
+    </p>
+
+    <div class="form-group">
+      <label for="disease-filter">Filter diseases by crop:</label>
+      <select id="disease-filter">
+        <option value="All">All Crops</option>
+        <option value="Maize">Maize</option>
+        <option value="Tomatoes">Tomatoes</option>
+        <option value="Cattle">Cattle</option>
+      </select>
+    </div>
+
+    <div class="lesson-list">
+      <article class="lesson">
+        <img src="images/lesson-armyworm.jpeg" alt="Armyworm on maize" onerror="this.style.display = 'none'" />
+        <div class="lesson-body">
+          <h3 class="lesson-toggle">Fall Armyworm (Maize) <span>+</span></h3>
+          <div class="lesson-content">
+            <p>
+              <strong>Symptoms:</strong> Ragged holes on leaves, sawdust-like
+              frass in the funnel, yellowing plants.
+            </p>
+            <p>
+              <strong>Eco-friendly control:</strong> Hand-pick larvae early.
+              Apply neem-based spray. Encourage natural predators like earwigs
+              and birds. Avoid broad-spectrum pesticides.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="lesson">
+        <img src="images/lesson-blight.jpeg" alt="Tomato blight" onerror="this.style.display = 'none'" />
+        <div class="lesson-body">
+          <h3 class="lesson-toggle">Tomato Blight <span>+</span></h3>
+          <div class="lesson-content">
+            <p>
+              <strong>Symptoms:</strong> Brown spots on leaves, white mould
+              under leaves, rotting fruit.
+            </p>
+            <p>
+              <strong>Eco-friendly control:</strong> Remove affected leaves.
+              Improve airflow by spacing plants. Use copper-based organic
+              spray. Rotate crops.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="lesson">
+        <img src="images/lesson-cattle.jpeg" alt="Cattle shed" onerror="this.style.display = 'none'" />
+        <div class="lesson-body">
+          <h3 class="lesson-toggle">
+            East Coast Fever (Cattle) <span>+</span>
+          </h3>
+          <div class="lesson-content">
+            <p>
+              <strong>Symptoms:</strong> High fever, swollen lymph nodes, loss
+              of appetite, difficulty breathing.
+            </p>
+            <p>
+              <strong>Eco-friendly control:</strong> Use tick-resistant
+              breeds. Regular acaricide dipping. Pasture rotation. Consult a
+              local vet.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CHALLENGE PAGE — CLI-STYLE FARMING QUIZ -->
+  <section id="challenge" class="page-section" aria-labelledby="challenge-heading">
+    <h2 id="challenge-heading">Farming Mtaani Quiz</h2>
+    <p>Test your knowledge of Kenyan agriculture. The quiz has 5 questions and a 60-second time limit.</p>
+
+    <div class="quiz-panel">
+      <!-- Welcome screen -->
+      <div id="quiz-welcome">
+        <p><strong>Ready?</strong> Click below to start. You will be prompted for each answer.</p>
+        <button class="btn-primary" id="quiz-start-btn">Start Quiz</button>
+      </div>
+
+      <!-- Terminal screen (hidden until quiz starts) -->
+      <div id="quiz-screen" style="display: none;">
+        <div class="quiz-status">
+          <span id="quiz-timer">Time: 60s</span>
+          <span id="quiz-progress">Question 1 of 5</span>
+        </div>
+        <div class="quiz-terminal">
+          <p id="quiz-question">Question will appear here...</p>
+          <p id="quiz-feedback" class="quiz-feedback"></p>
+        </div>
+        <button class="btn-primary" id="quiz-answer-btn">Submit Answer</button>
+      </div>
+
+      <!-- Results screen -->
+      <div id="quiz-results" style="display: none;">
+        <h3>Quiz Complete</h3>
+        <p id="quiz-score"></p>
+        <p id="quiz-breakdown"></p>
+        <button class="btn-secondary" id="quiz-restart-btn">Try Again</button>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <footer>
+    <p>Farming Mtaani &copy; 2026 &middot; Empowering Kenyan Farmers</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/util.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/test.utils.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/quiz.tests.js"></script>
+</body>
+
 </html>
