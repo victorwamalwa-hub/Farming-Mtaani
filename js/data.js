@@ -4,11 +4,11 @@
 
 // 1. The 47 Kenyan Counties
 const COUNTIES = [
-    "Nairobi", "Mombasa", "Kisumu", "Nakuru", "Uasin Gishu", "Kiambu", "Machakos", "Meru", 
-    "Nyeri", "Kakamega", "Bungoma", "Kitui", "Kilifi", "Kwale", "Lamu", "Tana River", 
-    "Garissa", "Wajir", "Mandera", "Marsabit", "Isiolo", "Tharaka Nithi", "Embu", "Kajiado", 
-    "Kericho", "Bomet", "Narok", "Kajiado", "Laikipia", "Samburu", "Turkana", "West Pokot", 
-    "Trans Nzoia", "Vihiga", "Busia", "Siaya", "Homa Bay", "Migori", "Kisii", "Nyamira", 
+    "Nairobi", "Mombasa", "Kisumu", "Nakuru", "Uasin Gishu", "Kiambu", "Machakos", "Meru",
+    "Nyeri", "Kakamega", "Bungoma", "Kitui", "Kilifi", "Kwale", "Lamu", "Tana River",
+    "Garissa", "Wajir", "Mandera", "Marsabit", "Isiolo", "Tharaka Nithi", "Embu", "Kajiado",
+    "Kericho", "Bomet", "Narok", "Kajiado", "Laikipia", "Samburu", "Turkana", "West Pokot",
+    "Trans Nzoia", "Vihiga", "Busia", "Siaya", "Homa Bay", "Migori", "Kisii", "Nyamira",
     "Murang'a", "Kirinyaga", "Nyandarua", "Nandi", "Elgeyo Marakwet", "Baringo"
 ];
 
@@ -36,31 +36,37 @@ const DISEASES = [
 
 // 5. Prices Data (Expanded with Categories)
 const PRICES = [
-    { id: 1, county: "Nairobi",  market: "Wakulima",       crop: "Maize",              category: "Cereals",   price: 3200, unit: "90kg bag" },
-    { id: 2, county: "Nakuru",   market: "Nakuru Market",  crop: "Beans",              category: "Legumes",   price: 8500, unit: "90kg bag" },
-    { id: 3, county: "Kiambu",   market: "Githurai",       crop: "Tomatoes",           category: "Vegetables",price: 120,  unit: "kg" },
-    { id: 4, county: "Nairobi",  market: "Kangemi",        crop: "Kale (Sukuma Wiki)", category: "Vegetables",price: 40,   unit: "bunch" },
-    { id: 5, county: "Meru",     market: "Meru Town",      crop: "Avocado",            category: "Fruits",    price: 90,   unit: "kg" },
-    { id: 6, county: "Kisumu",   market: "Kibuye",         crop: "Rice",               category: "Cereals",   price: 180,  unit: "kg" },
-    { id: 7, county: "Machakos", market: "Machakos",       crop: "Mangoes",            category: "Fruits",    price: 60,   unit: "kg" },
-    { id: 8, county: "Nyeri",    market: "Karatina",       crop: "Potatoes",           category: "Vegetables",price: 55,   unit: "kg" },
-    { id: 9, county: "Kericho",  market: "Kericho",        crop: "Tea Leaves",         category: "Cash Crops",price: 25,   unit: "kg" },
-    { id: 10,county: "Kakamega", market: "Kakamega",       crop: "Sugarcane",          category: "Cash Crops",price: 4500, unit: "tonne" }
+    { id: 1, county: "Nairobi", market: "Wakulima", crop: "Maize", category: "Cereals", price: 3200, unit: "90kg bag" },
+    { id: 2, county: "Nakuru", market: "Nakuru Market", crop: "Beans", category: "Legumes", price: 8500, unit: "90kg bag" },
+    { id: 3, county: "Kiambu", market: "Githurai", crop: "Tomatoes", category: "Vegetables", price: 120, unit: "kg" },
+    { id: 4, county: "Nairobi", market: "Kangemi", crop: "Kale (Sukuma Wiki)", category: "Vegetables", price: 40, unit: "bunch" },
+    { id: 5, county: "Meru", market: "Meru Town", crop: "Avocado", category: "Fruits", price: 90, unit: "kg" },
+    { id: 6, county: "Kisumu", market: "Kibuye", crop: "Rice", category: "Cereals", price: 180, unit: "kg" },
+    { id: 7, county: "Machakos", market: "Machakos", crop: "Mangoes", category: "Fruits", price: 60, unit: "kg" },
+    { id: 8, county: "Nyeri", market: "Karatina", crop: "Potatoes", category: "Vegetables", price: 55, unit: "kg" },
+    { id: 9, county: "Kericho", market: "Kericho", crop: "Tea Leaves", category: "Cash Crops", price: 25, unit: "kg" },
+    { id: 10, county: "Kakamega", market: "Kakamega", crop: "Sugarcane", category: "Cash Crops", price: 4500, unit: "tonne" }
 ];
 
 const INITIAL_FARMS = [
-    { id: 1,  name: "Green Valley Farm",      county: "Kiambu",      produce: "Vegetables & Kale",      contact: "0712 345 678" },
-    { id: 2,  name: "Rift Agro Hub",          county: "Nakuru",      produce: "Maize & Beans",          contact: "0723 456 789" },
-    { id: 3,  name: "Mavuno Youth Farm",      county: "Machakos",    produce: "Mangoes & Avocado",      contact: "0734 567 890" },
-    { id: 4,  name: "Kisumu Fresh Produce",   county: "Kisumu",      produce: "Rice & Fish Farming",    contact: "0745 678 901" },
-    { id: 5,  name: "Meru Highlands",         county: "Meru",        produce: "Avocado & Coffee",       contact: "0756 789 012" },
-    { id: 6,  name: "Nyeri Dairy & Crops",    county: "Nyeri",       produce: "Potatoes & Dairy",       contact: "0767 890 123" },
-    { id: 7,  name: "Kericho Green Gold",     county: "Kericho",     produce: "Tea Leaves & Maize",     contact: "0778 901 234" },
-    { id: 8,  name: "Kakamega Sugar Belt",    county: "Kakamega",    produce: "Sugarcane & Bananas",    contact: "0789 012 345" },
-    { id: 9,  name: "Trans Nzoia Grain Hub",  county: "Trans Nzoia", produce: "Wheat & Maize",          contact: "0790 123 456" },
-    { id: 10, name: "Kajiado Livestock",      county: "Kajiado",     produce: "Cattle & Goats",         contact: "0701 234 567" },
-    { id: 11, name: "Kilifi Coastal Farms",   county: "Kilifi",      produce: "Coconuts & Cashews",     contact: "0712 345 678" },
-    { id: 12, name: "Embu Horticulture",      county: "Embu",        produce: "Tomatoes & French Beans",contact: "0723 456 789" }
+    { id: 1, name: "Green Valley Farm", county: "Kiambu", produce: "Vegetables & Kale", contact: "0712 345 678" },
+    { id: 2, name: "Rift Agro Hub", county: "Nakuru", produce: "Maize & Beans", contact: "0723 456 789" },
+    { id: 3, name: "Mavuno Youth Farm", county: "Machakos", produce: "Mangoes & Avocado", contact: "0734 567 890" },
+    { id: 4, name: "Kisumu Fresh Produce", county: "Kisumu", produce: "Rice & Fish Farming", contact: "0745 678 901" },
+    { id: 5, name: "Meru Highlands", county: "Meru", produce: "Avocado & Coffee", contact: "0756 789 012" },
+    { id: 6, name: "Nyeri Dairy & Crops", county: "Nyeri", produce: "Potatoes & Dairy", contact: "0767 890 123" },
+    { id: 7, name: "Kericho Green Gold", county: "Kericho", produce: "Tea Leaves & Maize", contact: "0778 901 234" },
+    { id: 8, name: "Kakamega Sugar Belt", county: "Kakamega", produce: "Sugarcane & Bananas", contact: "0789 012 345" },
+    { id: 9, name: "Trans Nzoia Grain Hub", county: "Trans Nzoia", produce: "Wheat & Maize", contact: "0790 123 456" },
+    { id: 10, name: "Kajiado Livestock", county: "Kajiado", produce: "Cattle & Goats", contact: "0701 234 567" },
+    { id: 11, name: "Kilifi Coastal Farms", county: "Kilifi", produce: "Coconuts & Cashews", contact: "0712 345 678" },
+    { id: 12, name: "Embu Horticulture", county: "Embu", produce: "Tomatoes & French Beans", contact: "0723 456 789" }
+    { id: 11, county: "Kiambu", market: "Githurai", crop: "Maize", category: "Cereals", price: 3100, unit: "90kg bag" },
+    { id: 12, county: "Nakuru", market: "Nakuru Market", crop: "Maize", category: "Cereals", price: 3000, unit: "90kg bag" },
+    { id: 13, county: "Trans Nzoia", market: "Kitale", crop: "Maize", category: "Cereals", price: 2800, unit: "90kg bag" },
+
+    { id: 14, county: "Nairobi", market: "Wakulima", crop: "Tomatoes", category: "Vegetables", price: 130, unit: "kg" },
+    { id: 15, county: "Meru", market: "Meru Town", crop: "Tomatoes", category: "Vegetables", price: 110, unit: "kg" },
 ];
 
 const FARM_IMAGES = [

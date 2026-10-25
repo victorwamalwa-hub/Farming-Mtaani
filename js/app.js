@@ -109,6 +109,92 @@ function renderPrices() {
             <p class="meta">📍 ${escapeHtml(p.market)}, ${escapeHtml(p.county)}</p>
         </div>
     `).join("");
+    
+    //Grouping
+    /**
+ * Groups all prices by crop name, so we can show a comparison view.
+ * Example output:
+ * {
+ *   "Tomatoes": [
+ *     { county: "Kiambu", market: "Githurai", price: 120, unit: "kg" },
+ *     { county: "Nairobi", market: "Kangemi", price: 130, unit: "kg" }
+ *   ],
+ *   "Maize": [ ... ],
+ *   ...
+ * }
+ */
+function groupPricesByCrop(prices) {
+    return prices.reduce((groups, p) => {
+        if (!groups[p.crop]) groups[p.crop] = [];
+        groups[p.crop].push(p);
+        return groups;
+    }, {});
+}
+
+renderComparisonView()function renderComparisonView() {
+     /**
+ * Renders the comparison view: for each crop, list the price in every
+ * county that sells it, plus min / max / average.
+ */
+function renderComparisonView() {
+    const grid = document.getElementById("price-grid");
+    if (!grid) return;
+
+    // Group all prices by crop
+    const grouped = groupPricesByCrop(currentPrices);
+
+    // Convert to array of { crop, entries } for iteration
+    const cropList = Object.keys(grouped).map(crop => ({
+        crop,
+        entries: grouped[crop]
+    }));
+
+    // Sort crops alphabetically
+    cropList.sort((a, b) => a.crop.localeCompare(b.crop));
+
+    if (cropList.length === 0) {
+        grid.innerHTML = "<p>No crop data to compare.</p>";
+        return;
+    }
+
+    grid.innerHTML = cropList.map(({ crop, entries }) => {
+
+        // Calculate the three numbers we want to show per crop
+        const pricesOnly = entries.map(e => e.price);
+        const minPrice = Math.min(...pricesOnly);
+        const maxPrice = Math.max(...pricesOnly);
+        const avgPrice = Math.round(
+            pricesOnly.reduce((sum, p) => sum + p, 0) / pricesOnly.length
+        );
+
+        // Build a small table row for every county that sells this crop
+        const countyRows = entries.map(e => `
+            <tr>
+                <td>${escapeHtml(e.county)}</td>
+                <td>${escapeHtml(e.market)}</td>
+                <td>${formatKES(e.price)} <small>per ${escapeHtml(e.unit)}</small></td>
+            </tr>
+        `).join("");
+
+        return `
+            <div class="grid-item price-card" style="grid-column: 1 / -1;">
+                <h3>${escapeHtml(crop)}</h3>
+                <p class="price">${formatKES(avgPrice)} <small>average</small></p>
+                <p class="unit">Lowest: ${formatKES(minPrice)} · Highest: ${formatKES(maxPrice)}</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #e8f5e9;">
+                            <th style="padding: 6px; text-align: left;">County</th>
+                            <th style="padding: 6px; text-align: left;">Market</th>
+                            <th style="padding: 6px; text-align: left;">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>${countyRows}</tbody>
+                </table>
+            </div>
+        `;
+    }).join("");
+}
 }
 
 /* ---------- FARMS (No changes) ---------- */
@@ -249,6 +335,22 @@ function updatePrices(prices) {
             animateValue("stat-prices", 0, currentPrices.length, 1500);
         }
     }
+}
+
+// Compare view toggle
+let compareMode = false;
+const compareBtn = document.getElementById("compare-toggle-btn");
+if (compareBtn) {
+    compareBtn.addEventListener("click", () => {
+        compareMode = !compareMode;
+        if (compareMode) {
+            compareBtn.textContent = "Back to Filter View";
+            renderComparisonView();
+        } else {
+            compareBtn.textContent = "Compare by Crop Across Counties";
+            renderPrices();
+        }
+    });
 }
 
 document.getElementById("price-category").addEventListener("change", renderPrices);

@@ -91,33 +91,36 @@
   <!-- PRICES PAGE -->
   <section id="prices" class="page-section" aria-labelledby="prices-heading">
     <h2 id="prices-heading">Market Prices Today</h2>
+    <div class="form-actions" style="margin-bottom: 15px;">
+      <button type="button" id="compare-toggle-btn" class="btn-secondary">Compare by Crop Across Counties</button>
+    </div>
     <p id="api-status" style="font-size: 0.9rem; margin-bottom: 12px; font-weight: bold"></p>
 
     <div class="form-group">
-    <label for="price-search">Search crop:</label>
-    <input type="text" id="price-search" placeholder="e.g. Maize" />
-</div>
+      <label for="price-search">Search crop:</label>
+      <input type="text" id="price-search" placeholder="e.g. Maize" />
+    </div>
 
-<div class="form-group">
-    <label for="price-county">Filter by county:</label>
-    <select id="price-county">
+    <div class="form-group">
+      <label for="price-county">Filter by county:</label>
+      <select id="price-county">
         <option value="">All Counties</option>
-    </select>
-</div>
+      </select>
+    </div>
 
-<div class="form-group">
-    <label for="price-category">Filter by Crop Category:</label>
-    <select id="price-category">
+    <div class="form-group">
+      <label for="price-category">Filter by Crop Category:</label>
+      <select id="price-category">
         <option value="All">All Categories</option>
-    </select>
-</div>
+      </select>
+    </div>
 
-<div class="form-group">
-    <label for="price-range">Filter by Price Range:</label>
-    <select id="price-range">
+    <div class="form-group">
+      <label for="price-range">Filter by Price Range:</label>
+      <select id="price-range">
         <option value="All">All Prices</option>
-    </select>
-</div>
+      </select>
+    </div>
     <!-- CRITICAL LINE-->
     <div id="price-grid" class="grid"></div>
   </section>
