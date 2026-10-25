@@ -1,0 +1,30 @@
+{
+  "name": "farming-mtaani",
+  "version": "1.0.0",
+  "description": "A web-based MVP that connects Kenyan farmers directly with consumers and buyers, provides up-to-date market prices, and offers eco-friendly guidance on common crop and livestock diseases.",
+  "main": "quiz.tests.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorwamalwa-hub/Farming-Mtaani.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/victorwamalwa-hub/Farming-Mtaani/issues"
+  },
+  "homepage": "https://github.com/victorwamalwa-hub/Farming-Mtaani#readme",
+  "devDependencies": {
+    "eslint": "^10.13.0",
+    "jest": "^30.5.2",
+    "prettier": "^3.9.10"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "unrs-resolver@1.12.2": true
+  }
+}
