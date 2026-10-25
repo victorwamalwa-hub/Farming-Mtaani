@@ -45,7 +45,12 @@ const PRICES = [
     { id: 7, county: "Machakos", market: "Machakos", crop: "Mangoes", category: "Fruits", price: 60, unit: "kg" },
     { id: 8, county: "Nyeri", market: "Karatina", crop: "Potatoes", category: "Vegetables", price: 55, unit: "kg" },
     { id: 9, county: "Kericho", market: "Kericho", crop: "Tea Leaves", category: "Cash Crops", price: 25, unit: "kg" },
-    { id: 10, county: "Kakamega", market: "Kakamega", crop: "Sugarcane", category: "Cash Crops", price: 4500, unit: "tonne" }
+    { id: 10, county: "Kakamega", market: "Kakamega", crop: "Sugarcane", category: "Cash Crops", price: 4500, unit: "tonne" },
+    { id: 11, county: "Kiambu", market: "Githurai", crop: "Maize", category: "Cereals", price: 3100, unit: "90kg bag" },
+    { id: 12, county: "Nakuru", market: "Nakuru Market", crop: "Maize", category: "Cereals", price: 3000, unit: "90kg bag" },
+    { id: 13, county: "Trans Nzoia", market: "Kitale", crop: "Maize", category: "Cereals", price: 2800, unit: "90kg bag" },
+    { id: 14, county: "Nairobi", market: "Wakulima", crop: "Tomatoes", category: "Vegetables", price: 130, unit: "kg" },
+    { id: 15, county: "Meru", market: "Meru Town", crop: "Tomatoes", category: "Vegetables", price: 110, unit: "kg" }
 ];
 
 const INITIAL_FARMS = [
@@ -61,12 +66,6 @@ const INITIAL_FARMS = [
     { id: 10, name: "Kajiado Livestock", county: "Kajiado", produce: "Cattle & Goats", contact: "0701 234 567" },
     { id: 11, name: "Kilifi Coastal Farms", county: "Kilifi", produce: "Coconuts & Cashews", contact: "0712 345 678" },
     { id: 12, name: "Embu Horticulture", county: "Embu", produce: "Tomatoes & French Beans", contact: "0723 456 789" }
-    { id: 11, county: "Kiambu", market: "Githurai", crop: "Maize", category: "Cereals", price: 3100, unit: "90kg bag" },
-    { id: 12, county: "Nakuru", market: "Nakuru Market", crop: "Maize", category: "Cereals", price: 3000, unit: "90kg bag" },
-    { id: 13, county: "Trans Nzoia", market: "Kitale", crop: "Maize", category: "Cereals", price: 2800, unit: "90kg bag" },
-
-    { id: 14, county: "Nairobi", market: "Wakulima", crop: "Tomatoes", category: "Vegetables", price: 130, unit: "kg" },
-    { id: 15, county: "Meru", market: "Meru Town", crop: "Tomatoes", category: "Vegetables", price: 110, unit: "kg" },
 ];
 
 const FARM_IMAGES = [
