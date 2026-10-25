@@ -24,3 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 });
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await initApp();
+    const response = await fetchPricesFromKilimoSTAT();
+    updatePrices(response.data);
+    // ... rest of main.js unchanged
+});

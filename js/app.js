@@ -183,30 +183,44 @@ function setupFarmForm() {
     const form = document.getElementById("farm-form");
     const toggleBtn = document.getElementById("toggle-form-btn");
     if (!form || !toggleBtn) return;
+
     toggleBtn.addEventListener("click", () => {
         const hidden = form.style.display === "none" || form.style.display === "";
         form.style.display = hidden ? "block" : "none";
         toggleBtn.textContent = hidden ? "Close Form" : "+ Register Farm";
     });
-    form.addEventListener("submit", (e) => {
+
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         const newFarm = {
-            id: Date.now(),
             name: document.getElementById("farm-name").value.trim(),
             county: document.getElementById("farm-county").value.trim(),
             produce: document.getElementById("farm-produce").value.trim(),
             contact: document.getElementById("farm-contact").value.trim()
         };
+
         if (!newFarm.name || !newFarm.county || !newFarm.produce) {
             alert("Please fill in all required fields.");
             return;
         }
-        farms.push(newFarm);
-        writeStorage("fm_farms", farms);
-        form.reset();
-        form.style.display = "none";
-        toggleBtn.textContent = "+ Register Farm";
-        renderFarms();
+
+        // Loading state
+        toggleBtn.disabled = true;
+        toggleBtn.textContent = "Saving...";
+
+        try {
+            const saved = await createFarm(newFarm);
+            farms.push(saved);
+            renderFarms();
+            form.reset();
+            form.style.display = "none";
+        } catch (err) {
+            alert(`Could not save farm: ${err.message}`);
+        } finally {
+            toggleBtn.disabled = false;
+            toggleBtn.textContent = "+ Register Farm";
+        }
     });
 }
 
@@ -233,12 +247,23 @@ function setupLessons() {
 }
 
 /* ---------- INIT ---------- */
-function initApp() {
+async function initApp() {
     bindPageNavigation();
     loadDashboardStats();
     populatePriceFilters();
     renderPrices();
+
+    // Try to load farms from backend; fall back to localStorage
+    try {
+        const remoteFarms = await fetchFarms();
+        if (Array.isArray(remoteFarms) && remoteFarms.length > 0) {
+            farms = remoteFarms;
+        }
+    } catch (err) {
+        console.warn("Using local farms:", err.message);
+    }
     renderFarms();
+
     setupFarmForm();
     setupLessons();
 
@@ -256,20 +281,6 @@ function initApp() {
 
     const fs = document.getElementById("farm-search");
     if (fs) fs.addEventListener("input", renderFarms);
-
-    const compareBtn = document.getElementById("compare-toggle-btn");
-    if (compareBtn) {
-        compareBtn.addEventListener("click", () => {
-            compareMode = !compareMode;
-            if (compareMode) {
-                compareBtn.textContent = "Back to Filter View";
-                renderComparisonView();
-            } else {
-                compareBtn.textContent = "Compare by Crop Across Counties";
-                renderPrices();
-            }
-        });
-    }
 }
 
 /* ---------- UPDATE (called by main.js) ---------- */
