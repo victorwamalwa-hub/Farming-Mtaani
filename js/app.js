@@ -165,18 +165,35 @@ function renderFarms() {
         grid.innerHTML = "<p>No farms match your search.</p>";
         return;
     }
-    grid.innerHTML = filtered.map((f, i) => {
+        grid.innerHTML = filtered.map((f, i) => {
         const img = FARM_IMAGES[i % FARM_IMAGES.length];
-        return `
-            <div class="grid-item farm-card">
-                <img src="${img}" alt="${escapeHtml(f.name)}" onerror="this.style.display='none'">
-                <h3>${escapeHtml(f.name)}</h3>
-                <p class="meta">📍 ${escapeHtml(f.county)}</p>
-                <p>${escapeHtml(f.produce)}</p>
-                <p class="contact">📞 ${escapeHtml(f.contact || "Contact not provided")}</p>
-            </div>
-        `;
+        return `...`;   // card template with the three buttons
     }).join("");
+
+    // Wire the new buttons
+    grid.querySelectorAll(".btn-edit").forEach(btn => {
+        btn.addEventListener("click", () => handleEditFarm(btn.dataset.id));
+    });
+    grid.querySelectorAll(".btn-replace").forEach(btn => {
+        btn.addEventListener("click", () => handleReplaceFarm(btn.dataset.id));
+    });
+    grid.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", () => handleDeleteFarm(btn.dataset.id));
+    });
+}
+`;
+    }).join("");
+
+    // Wire the new buttons
+    grid.querySelectorAll(".btn-edit").forEach(btn => {
+        btn.addEventListener("click", () => handleEditFarm(btn.dataset.id));
+    });
+    grid.querySelectorAll(".btn-replace").forEach(btn => {
+        btn.addEventListener("click", () => handleReplaceFarm(btn.dataset.id));
+    });
+    grid.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", () => handleDeleteFarm(btn.dataset.id));
+    });
 }
 
 function setupFarmForm() {
@@ -216,7 +233,7 @@ function setupFarmForm() {
             form.reset();
             form.style.display = "none";
         } catch (err) {
-            alert(`Could not save farm: ${err.message}`);
+            alert(`Could not save farm: ${ err.message } `);
         } finally {
             toggleBtn.disabled = false;
             toggleBtn.textContent = "+ Register Farm";
