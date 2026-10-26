@@ -158,25 +158,48 @@ function renderComparisonView() {
 function renderFarms() {
     const grid = document.getElementById("farm-grid");
     if (!grid) return;
-    const filter = document.getElementById("farm-search").value;
+
+    const filter = document.getElementById("farm-search")?.value || "";
     const filtered = farms.filter(f =>
-        matchesQuery(f.produce, filter) || matchesQuery(f.county, filter));
+        matchesQuery(f.name, filter) ||
+        matchesQuery(f.produce, filter) ||
+        matchesQuery(f.county, filter)
+    );
+
     if (filtered.length === 0) {
         grid.innerHTML = "<p>No farms match your search.</p>";
         return;
     }
+
     grid.innerHTML = filtered.map((f, i) => {
         const img = FARM_IMAGES[i % FARM_IMAGES.length];
         return `
-            <div class="grid-item farm-card">
-                <img src="${img}" alt="${escapeHtml(f.name)}" onerror="this.style.display='none'">
-                <h3>${escapeHtml(f.name)}</h3>
-                <p class="meta">📍 ${escapeHtml(f.county)}</p>
-                <p>${escapeHtml(f.produce)}</p>
-                <p class="contact">📞 ${escapeHtml(f.contact || "Contact not provided")}</p>
-            </div>
+            <article class="farm-card">
+                <img src="${img}" alt="${escapeHtml(f.name)}" />
+                <div class="farm-card-body">
+                    <h3>${escapeHtml(f.name)}</h3>
+                    <p><strong>County:</strong> ${escapeHtml(f.county)}</p>
+                    <p><strong>Produce:</strong> ${escapeHtml(f.produce)}</p>
+                    <p><strong>Contact:</strong> ${escapeHtml(f.contact || "N/A")}</p>
+                    <div class="farm-actions">
+                        <button class="btn btn-edit" type="button" data-id="${f.id}">Edit</button>
+                        <button class="btn btn-replace" type="button" data-id="${f.id}">Replace</button>
+                        <button class="btn btn-delete" type="button" data-id="${f.id}">Delete</button>
+                    </div>
+                </div>
+            </article>
         `;
     }).join("");
+
+    grid.querySelectorAll(".btn-edit").forEach(btn => {
+        btn.addEventListener("click", () => handleEditFarm(btn.dataset.id));
+    });
+    grid.querySelectorAll(".btn-replace").forEach(btn => {
+        btn.addEventListener("click", () => handleReplaceFarm(btn.dataset.id));
+    });
+    grid.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", () => handleDeleteFarm(btn.dataset.id));
+    });
 }
 
 function setupFarmForm() {
@@ -216,7 +239,7 @@ function setupFarmForm() {
             form.reset();
             form.style.display = "none";
         } catch (err) {
-            alert(`Could not save farm: ${err.message}`);
+            alert(`Could not save farm: ${ err.message } `);
         } finally {
             toggleBtn.disabled = false;
             toggleBtn.textContent = "+ Register Farm";
@@ -289,5 +312,104 @@ function updatePrices(prices) {
         currentPrices = prices;
         populatePriceFilters();
         renderPrices();
+    }
+}
+
+/* ============================================================
+   FARM CRUD HANDLERS — Edit (PATCH), Replace (PUT), Delete (DELETE)
+   ============================================================ */
+
+async function handleEditFarm(id) {
+    const farm = farms.find(f => String(f.id) === String(id));
+    if (!farm) {
+        alert("Farm not found.");
+        return;
+    }
+
+    const newProduce = prompt(
+        `Edit "${farm.name}"\n\nCurrent produce: ${farm.produce}\n\nEnter new produce:`,
+        farm.produce
+    );
+    if (newProduce === null) return;
+
+    const newContact = prompt(
+        `Update phone for "${farm.name}":`,
+        farm.contact || ""
+    );
+    if (newContact === null) return;
+
+    const changes = {
+        produce: newProduce.trim() || farm.produce,
+        contact: newContact.trim() || farm.contact
+    };
+
+    try {
+        const patched = await updateFarm(id, changes);
+        const index = farms.findIndex(f => String(f.id) === String(id));
+        farms[index] = { ...farms[index], ...patched };
+        writeStorage("fm_farms", farms);
+        renderFarms();
+    } catch (err) {
+        alert(`Could not update farm: ${err.message}`);
+    }
+}
+
+async function handleReplaceFarm(id) {
+    const farm = farms.find(f => String(f.id) === String(id));
+    if (!farm) {
+        alert("Farm not found.");
+        return;
+    }
+
+    const newName = prompt("Farm name:", farm.name);
+    if (newName === null) return;
+
+    const newCounty = prompt("County:", farm.county);
+    if (newCounty === null) return;
+
+    const newProduce = prompt("Produce:", farm.produce);
+    if (newProduce === null) return;
+
+    const newContact = prompt("Phone:", farm.contact || "");
+    if (newContact === null) return;
+
+    const fullFarm = {
+        id: farm.id,
+        name: newName.trim() || farm.name,
+        county: newCounty.trim() || farm.county,
+        produce: newProduce.trim() || farm.produce,
+        contact: newContact.trim() || farm.contact
+    };
+
+    try {
+        const replaced = await replaceFarm(id, fullFarm);
+        const index = farms.findIndex(f => String(f.id) === String(id));
+        farms[index] = replaced;
+        writeStorage("fm_farms", farms);
+        renderFarms();
+    } catch (err) {
+        alert(`Could not replace farm: ${err.message}`);
+    }
+}
+
+async function handleDeleteFarm(id) {
+    const farm = farms.find(f => String(f.id) === String(id));
+    if (!farm) {
+        alert("Farm not found.");
+        return;
+    }
+
+    const confirmed = confirm(
+        `Delete "${farm.name}"?\n\nThis cannot be undone.`
+    );
+    if (!confirmed) return;
+
+    try {
+        await deleteFarm(id);
+        farms = farms.filter(f => String(f.id) !== String(id));
+        writeStorage("fm_farms", farms);
+        renderFarms();
+    } catch (err) {
+        alert(`Could not delete farm: ${err.message}`);
     }
 }

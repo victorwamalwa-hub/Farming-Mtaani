@@ -2,15 +2,17 @@
   "name": "farming-mtaani",
   "version": "1.0.0",
   "description": "Farming Mtaani — connecting Kenyan farmers and consumers",
-  "main": "js/main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "json-server --watch db.json --port 3000",
+    "start": "node index.js",
     "test": "node --test js/tests/app.test.js",
     "coverage": "c8 --reporter=text --reporter=html node --test js/tests/app.test.js"
   },
-  "devDependencies": {
-    "c8": "^9.1.0",
+  "dependencies": {
     "json-server": "^0.17.4"
+  },
+  "devDependencies": {
+    "c8": "^9.1.0"
   },
   "license": "MIT"
 }

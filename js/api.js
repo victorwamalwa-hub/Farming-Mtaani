@@ -5,9 +5,7 @@
              or: https://your-app.onrender.com (deployed)
    ============================================================ */
 
-const API_BASE = window.location.hostname === "localhost"
-    ? "http://localhost:3000"
-    : "https://farming-mtaani-api.onrender.com"; // <-- your deployed URL
+const API_BASE = window.location.origin;
 
 /* ---------- CORE REQUEST HANDLER ---------- */
 async function request(method, path, body) {
