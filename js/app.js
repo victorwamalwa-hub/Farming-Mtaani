@@ -276,10 +276,10 @@ async function initApp() {
     populatePriceFilters();
     renderPrices();
 
-    // Try to load farms from backend; fall back to localStorage
+    // The API layer returns cached farms when the backend is unavailable.
     try {
         const remoteFarms = await fetchFarms();
-        if (Array.isArray(remoteFarms) && remoteFarms.length > 0) {
+        if (Array.isArray(remoteFarms)) {
             farms = remoteFarms;
         }
     } catch (err) {

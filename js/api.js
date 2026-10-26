@@ -52,24 +52,39 @@ async function fetchPricesFromKilimoSTAT() {
 }
 
 /* ---------- FARMS ---------- */
+function getStoredFarms() {
+    const storedFarms = readStorage("fm_farms", INITIAL_FARMS);
+    return Array.isArray(storedFarms) ? storedFarms : [...INITIAL_FARMS];
+}
+
+function storeFarms(farms) {
+    writeStorage("fm_farms", farms);
+    return farms;
+}
+
 async function fetchFarms() {
     try {
-        return await api.get("farms");
+        const farms = await api.get("farms");
+        if (!Array.isArray(farms)) throw new Error("Invalid farms response");
+        storeFarms(farms);
+        return farms;
     } catch (err) {
         console.warn("[api] Falling back to cached farms:", err.message);
-        return [...INITIAL_FARMS];
+        return getStoredFarms();
     }
 }
 
 async function createFarm(farm) {
     try {
-        return await api.post("farms", farm);
+        const savedFarm = await api.post("farms", farm);
+        storeFarms([...getStoredFarms(), savedFarm]);
+        return savedFarm;
     } catch (err) {
         console.warn("[api] POST failed, saving locally:", err.message);
-        const farms = readStorage("fm_farms", INITIAL_FARMS);
+        const farms = getStoredFarms();
         const newFarm = { ...farm, id: Date.now() };
         farms.push(newFarm);
-        writeStorage("fm_farms", farms);
+        storeFarms(farms);
         return newFarm;
     }
 }
@@ -79,7 +94,12 @@ async function updateFarm(id, changes) {
         return await api.patch("farms", id, changes);
     } catch (err) {
         console.warn("[api] PATCH failed:", err.message);
-        throw err;
+        const farms = getStoredFarms();
+        const index = farms.findIndex(farm => String(farm.id) === String(id));
+        if (index === -1) throw err;
+        farms[index] = { ...farms[index], ...changes };
+        storeFarms(farms);
+        return farms[index];
     }
 }
 
@@ -88,7 +108,12 @@ async function replaceFarm(id, farm) {
         return await api.put("farms", id, farm);
     } catch (err) {
         console.warn("[api] PUT failed:", err.message);
-        throw err;
+        const farms = getStoredFarms();
+        const index = farms.findIndex(item => String(item.id) === String(id));
+        if (index === -1) throw err;
+        farms[index] = farm;
+        storeFarms(farms);
+        return farm;
     }
 }
 
@@ -97,6 +122,10 @@ async function deleteFarm(id) {
         return await api.del("farms", id);
     } catch (err) {
         console.warn("[api] DELETE failed:", err.message);
-        throw err;
+        const farms = getStoredFarms();
+        const remainingFarms = farms.filter(farm => String(farm.id) !== String(id));
+        if (remainingFarms.length === farms.length) throw err;
+        storeFarms(remainingFarms);
+        return null;
     }
 }
