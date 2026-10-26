@@ -175,6 +175,24 @@ This approach keeps the MVP honest, fully demo-able, and easy to extend.
 
 ---
 
+### HTTP Methods in Use
+
+| Method | Endpoint | Where it is triggered |
+|---|---|---|
+| GET | `/prices` | Prices page loads |
+| GET | `/farms` | Farms page loads |
+| POST | `/farms` | "Save Farm" button in the register form |
+| PATCH | `/farms/:id` | "Edit" button on a farm card |
+| PUT | `/farms/:id` | "Replace" button on a farm card |
+| DELETE | `/farms/:id` | "Delete" button on a farm card |
+
+To verify each method during review:
+1. Open the Farms page.
+2. Press F12 → Network tab.
+3. Click Edit → observe a `PATCH` request.
+4. Click Replace → observe a `PUT` request.
+5. Click Delete → observe a `DELETE` request.
+
 ## Known Limitations
 
 This is a student MVP, not a production system. The following are intentional scope decisions:
