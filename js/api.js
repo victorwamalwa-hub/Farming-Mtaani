@@ -5,7 +5,8 @@
              or: https://your-app.onrender.com (deployed)
    ============================================================ */
 
-const API_BASE = window.location.origin;
+const configuredApiBase = document.querySelector('meta[name="api-base-url"]')?.content.trim();
+const API_BASE = (configuredApiBase || window.location.origin).replace(/\/+$/, "");
 
 /* ---------- CORE REQUEST HANDLER ---------- */
 async function request(method, path, body) {
@@ -44,7 +45,10 @@ const api = {
 async function fetchPricesFromKilimoSTAT() {
     try {
         const prices = await api.get("prices");
-        return { data: prices, source: "JSON Server (live)", error: null };
+        if (!Array.isArray(prices) || prices.length === 0) {
+            throw new Error("JSON Server returned no price records");
+        }
+        return { data: prices, source: "JSON Server", error: null };
     } catch (err) {
         console.warn("[api] JSON Server unreachable, using cached data:", err.message);
         return { data: [...PRICES], source: "Cached sample data", error: err.message };

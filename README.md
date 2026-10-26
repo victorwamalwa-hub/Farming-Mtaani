@@ -97,7 +97,7 @@ farming-mtaani/
 
 ## Run and Deploy
 
-The Node server serves the homepage, styles, scripts, images, and JSON API from one origin.
+The Node server serves the homepage, styles, scripts, images, and JSON API from one origin. The app uses that same origin for API requests by default.
 
 ```bash
 npm install
@@ -105,6 +105,8 @@ npm start
 ```
 
 Open `http://localhost:3000`. For a Node hosting service, deploy the repository root, use `npm install` as the build/install command, and `npm start` as the start command. Keep `index.html`, `styles.css`, `images/`, and `js/` in the deployed repository alongside `index.js` and `package.json`; the server needs those files to render the complete homepage.
+
+If the frontend and JSON Server are deployed separately, set the `api-base-url` meta tag in `index.html` to the JSON Server's HTTPS base URL (for example, `https://your-api-host.example.com`, without a trailing slash). Verify that opening `<api-base-url>/prices` returns a JSON array. Otherwise leave the tag empty and the app will call `/prices` on its own host.
 
 ---
 
