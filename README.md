@@ -95,28 +95,16 @@ farming-mtaani/
 
 ---
 
-## How to Run Locally
+## Run and Deploy
 
-### Option 1 — Open directly in your browser
-1. Download or clone the project folder.
-2. Double-click `index.html`.
-3. The site opens in your default browser and works immediately.
+The Node server serves the homepage, styles, scripts, images, and JSON API from one origin.
 
-### Option 2 — Use a local server (recommended)
-Running through a local server is recommended because `localStorage` behaves more consistently and you can see how the site will behave once deployed.
-
-**Using VS Code Live Server:**
-1. Open the project folder in VS Code.
-2. Install the **Live Server** extension.
-3. Right-click `index.html` and select **"Open with Live Server"**.
-4. The site opens at `http://127.0.0.1:5500`.
-
-**Using Python:**
 ```bash
-cd farming-mtaani
-python3 -m http.server 8000
+npm install
+npm start
 ```
-Then visit `http://localhost:8000`.
+
+Open `http://localhost:3000`. For a Node hosting service, deploy the repository root, use `npm install` as the build/install command, and `npm start` as the start command. Keep `index.html`, `styles.css`, `images/`, and `js/` in the deployed repository alongside `index.js` and `package.json`; the server needs those files to render the complete homepage.
 
 ---
 
@@ -192,6 +180,8 @@ To verify each method during review:
 3. Click Edit → observe a `PATCH` request.
 4. Click Replace → observe a `PUT` request.
 5. Click Delete → observe a `DELETE` request.
+
+![PATCH, PUT, DELETE in the Network tab](presentation/crud-network-proof.png)
 
 ## Known Limitations
 
